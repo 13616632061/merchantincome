@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
+
+    <RelativeLayout style="@style/height48Stytle">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/order_num"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_order_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv1"
+            android:textColor="@color/blackText"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/order_num"
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp" />
+
+        <include
+            style="@style/lineStyle01"
+            layout="@layout/layout_line"></include>
+    </RelativeLayout>
+
+    <RelativeLayout style="@style/height48Stytle">
+
+        <TextView
+            android:id="@+id/tv2"
+            style="@style/tvStyle01"
+            android:text="@string/name" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/etStyle01"
+            android:layout_toRightOf="@+id/tv2" />
+    </RelativeLayout>
+
+    <RelativeLayout style="@style/height48Stytle">
+
+        <TextView
+            android:id="@+id/tv3"
+            style="@style/tvStyle01"
+            android:text="@string/phone_num" />
+
+        <TextView
+            android:id="@+id/tv_phone"
+            style="@style/etStyle01"
+            android:layout_toRightOf="@+id/tv3" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/height48Stytle"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv4"
+            style="@style/tvStyle01"
+            android:layout_centerVertical="false"
+            android:text="@string/receiving_adress" />
+
+        <TextView
+            android:id="@+id/tv_adress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/tv4"
+            android:textColor="@color/blackText"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout style="@style/height48Stytle">
+
+        <TextView
+            android:id="@+id/tv5"
+            style="@style/tvStyle01"
+            android:text="@string/order_time" />
+
+        <TextView
+            android:id="@+id/tv_order_time"
+            style="@style/etStyle01"
+            android:layout_toRightOf="@+id/tv5" />
+
+        <include
+            style="@style/lineStyle01"
+            layout="@layout/layout_line"></include>
+    </RelativeLayout>
+
+    <RelativeLayout style="@style/height48Stytle">
+
+        <TextView
+            android:id="@+id/tv6"
+            style="@style/tvStyle01"
+            android:text="@string/order_price" />
+
+        <TextView
+            android:id="@+id/tv_order_price"
+            style="@style/etStyle01"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/tv_sure_send"
+            android:layout_toRightOf="@+id/tv6"
+            android:textColor="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/tv_sure_send"
+            style="@style/btnStyle01"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/sure_send" />
+
+    </RelativeLayout>
+</LinearLayout>

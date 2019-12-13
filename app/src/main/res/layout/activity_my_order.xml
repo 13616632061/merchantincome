@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="yzx.com.merchantincome.ui.activity.order.view.MyOrderActivity">
+
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/layout_title_bar"></include>
+
+    <com.nshmura.recyclertablayout.RecyclerTabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/title_bar"
+        app:rtl_tabOnScreenLimit="3"
+        app:rtl_scrollEnabled="true"
+        app:rtl_tabIndicatorHeight="0.5dp"
+        app:rtl_tabSelectedTextColor="@color/colorPrimary"></com.nshmura.recyclertablayout.RecyclerTabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+</LinearLayout>

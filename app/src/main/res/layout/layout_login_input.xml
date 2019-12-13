@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/login_phone"
+        style="@style/inputStyle02"
+        android:layout_marginTop="150dp"
+        android:drawableLeft="@mipmap/log_phone_login"
+        android:hint="@string/input_phone_no"
+        android:inputType="number" />
+
+    <include
+        style="@style/lineStyle01"
+        layout="@layout/layout_line"></include>
+
+
+    <EditText
+        android:id="@+id/login_pwd"
+        style="@style/inputStyle02"
+        android:drawableLeft="@mipmap/log_code_login"
+        android:hint="@string/input_pwd" />
+
+    <include
+        style="@style/lineStyle01"
+        layout="@layout/layout_line"></include>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp">
+
+        <TextView
+            android:id="@+id/tv_apply_acount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/apply_acount"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_forget_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/forget_pwd"
+            android:textColor="@color/color_868686"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        style="@style/btnStyle01"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/login" />
+</LinearLayout>

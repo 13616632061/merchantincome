@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/left_layout"
+    android:layout_width="250dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="left"
+    android:background="@drawable/icon_logo"
+    android:orientation="vertical"
+    android:paddingLeft="15dp">
+
+
+    <TextView
+        android:id="@+id/tv_shopper_info"
+        style="@style/inputStyle02"
+        android:layout_marginTop="120dp"
+        android:drawableLeft="@mipmap/icon_area"
+        android:gravity="center_vertical"
+        android:inputType="number"
+        android:text="@string/shopper_info"
+        android:textColor="@color/white" />
+
+    <include
+        style="@style/lineStyle01"
+        layout="@layout/layout_line"></include>
+
+    <TextView
+        android:id="@+id/tv_my_order"
+        style="@style/inputStyle02"
+        android:drawableLeft="@mipmap/icon_area"
+        android:gravity="center_vertical"
+        android:inputType="number"
+        android:text="@string/my_order"
+        android:textColor="@color/white" />
+
+    <include
+        style="@style/lineStyle01"
+        layout="@layout/layout_line"></include>
+
+    <TextView
+        android:id="@+id/tv_explain"
+        style="@style/inputStyle02"
+        android:drawableLeft="@mipmap/icon_area"
+        android:gravity="center_vertical"
+        android:inputType="number"
+        android:text="@string/phone_explain"
+        android:textColor="@color/white" />
+
+    <include
+        style="@style/lineStyle01"
+        layout="@layout/layout_line"></include>
+    <TextView
+        android:id="@+id/tv_outLogin"
+        style="@style/inputStyle02"
+        android:drawableLeft="@mipmap/icon_area"
+        android:gravity="center_vertical"
+        android:inputType="number"
+        android:text="@string/outLogin"
+        android:textColor="@color/white" />
+
+    <include
+        style="@style/lineStyle01"
+        layout="@layout/layout_line"></include>
+</LinearLayout>

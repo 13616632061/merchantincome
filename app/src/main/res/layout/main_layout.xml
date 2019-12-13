@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/layout_title_bar"></include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_sure_cash"
+        android:layout_below="@+id/title_bar"
+        android:paddingBottom="10dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.bigkoo.convenientbanner.ConvenientBanner
+                    android:id="@+id/banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></com.bigkoo.convenientbanner.ConvenientBanner>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/inputLayout">
+
+                <TextView
+                    style="@style/tvStyle01"
+                    android:text="@string/shoper_name" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/blackText"
+                    android:textSize="14sp" />
+
+                <include
+                    style="@style/lineStyle01"
+                    layout="@layout/layout_line"></include>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/inputLayout">
+
+                <TextView
+                    style="@style/tvStyle01"
+                    android:text="@string/shoper_phone" />
+
+                <TextView
+                    android:id="@+id/tv_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/blackText"
+                    android:textSize="14sp" />
+
+                <include
+                    style="@style/lineStyle01"
+                    layout="@layout/layout_line"></include>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/inputLayout">
+
+                <TextView
+                    style="@style/tvStyle01"
+                    android:text="@string/dispatch_profit" />
+
+                <TextView
+                    android:id="@+id/tv_dispatch_profit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/blackText"
+                    android:textSize="14sp" />
+
+                <include
+                    style="@style/lineStyle01"
+                    layout="@layout/layout_line"></include>
+            </RelativeLayout>
+
+
+            <RelativeLayout style="@style/inputLayout">
+
+                <TextView
+                    android:id="@+id/tv_dispatch_cash"
+                    style="@style/tvStyle01"
+                    android:text="@string/cash_withdrawal_amount" />
+
+                <EditText
+                    android:id="@+id/et_dispatch_cash"
+                    style="@style/etStyle01"
+                    android:layout_toRightOf="@+id/tv_dispatch_cash"
+                    android:hint="@string/input_dispatch_cash" />
+
+                <include
+                    style="@style/lineStyle01"
+                    layout="@layout/layout_line"></include>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/inputLayout">
+
+                <TextView
+                    style="@style/tvStyle01"
+                    android:text="@string/retail_profit" />
+
+                <TextView
+                    android:id="@+id/tv_retail_profit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/blackText"
+                    android:textSize="14sp" />
+
+                <include
+                    style="@style/lineStyle01"
+                    layout="@layout/layout_line"></include>
+            </RelativeLayout>
+
+
+            <RelativeLayout style="@style/inputLayout">
+
+                <TextView
+                    android:id="@+id/tv_retail_cash"
+                    style="@style/tvStyle01"
+                    android:text="@string/cash_withdrawal_amount" />
+
+                <EditText
+                    android:id="@+id/et_retail_cash"
+                    style="@style/etStyle01"
+                    android:layout_toRightOf="@+id/tv_retail_cash"
+                    android:hint="@string/input_retail_cash" />
+
+                <include
+                    style="@style/lineStyle01"
+                    layout="@layout/layout_line"></include>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/inputLayout">
+
+                <TextView
+                    android:id="@+id/tv_pwd"
+                    style="@style/tvStyle01"
+                    android:text="@string/pwd" />
+
+                <EditText
+                    android:id="@+id/et_pwd"
+                    style="@style/etStyle01"
+                    android:layout_toRightOf="@+id/tv_pwd"
+                    android:hint="@string/input_pwd" />
+
+                <include
+                    style="@style/lineStyle01"
+                    layout="@layout/layout_line"></include>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_tips"
+                style="@style/tvStyle01"
+                android:layout_height="120dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:gravity="left"
+                android:text="@string/tips" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/btn_order"
+        style="@style/btnStyle01"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="15dp"
+        android:text="@string/my_order" />
+
+    <Button
+        android:id="@+id/btn_sure_cash"
+        style="@style/btnStyle01"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="15dp"
+        android:text="@string/sure_cash" />
+</RelativeLayout>

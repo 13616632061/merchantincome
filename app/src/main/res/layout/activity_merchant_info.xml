@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="yzx.com.merchantincome.ui.activity.merchantInfo.MerchantInfoActivity">
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/layout_title_bar"></include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_bar"
+        android:paddingBottom="10dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <RelativeLayout style="@style/inputLayout">
+
+                <TextView
+                    android:id="@+id/tv_adress"
+                    style="@style/tvStyle01"
+                    android:text="@string/receiving_adress" />
+
+                <EditText
+                    android:id="@+id/et_adress"
+                    style="@style/etStyle01"
+                    android:layout_toRightOf="@+id/tv_adress"
+                    android:hint="@string/input_receiving_adress" />
+
+                <include
+                    style="@style/lineStyle01"
+                    layout="@layout/layout_line"></include>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/inputLayout">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    style="@style/tvStyle01"
+                    android:text="@string/name" />
+
+                <EditText
+                    android:id="@+id/et_name"
+                    style="@style/etStyle01"
+                    android:layout_toRightOf="@+id/tv_name"
+                    android:hint="@string/input_name" />
+
+                <include
+                    style="@style/lineStyle01"
+                    layout="@layout/layout_line"></include>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/inputLayout">
+
+                <TextView
+                    android:id="@+id/tv_phone"
+                    style="@style/tvStyle01"
+                    android:text="@string/phone_num" />
+
+                <EditText
+                    android:id="@+id/et_phone"
+                    style="@style/etStyle01"
+                    android:layout_toRightOf="@+id/tv_phone"
+                    android:hint="@string/input_phone_num" />
+
+                <include
+                    style="@style/lineStyle01"
+                    layout="@layout/layout_line"></include>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/inputLayout">
+
+                <TextView
+                    android:id="@+id/tv_open_bank"
+                    style="@style/tvStyle01"
+                    android:text="@string/opening_bank" />
+
+                <EditText
+                    android:id="@+id/et_open_bank"
+                    style="@style/etStyle01"
+                    android:layout_toRightOf="@+id/tv_open_bank"
+                    android:hint="@string/input_opening_bank" />
+
+                <include
+                    style="@style/lineStyle01"
+                    layout="@layout/layout_line"></include>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/inputLayout">
+
+                <TextView
+                    android:id="@+id/tv_account"
+                    style="@style/tvStyle01"
+                    android:text="@string/bank_number" />
+
+                <EditText
+                    android:id="@+id/et_account"
+                    style="@style/etStyle01"
+                    android:layout_toRightOf="@+id/tv_account"
+                    android:hint="@string/input_bank_number" />
+
+                <include
+                    style="@style/lineStyle01"
+                    layout="@layout/layout_line"></include>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/inputLayout">
+
+                <TextView
+                    android:id="@+id/tv_wx_number"
+                    style="@style/tvStyle01"
+                    android:text="@string/weixin_number" />
+
+                <EditText
+                    android:id="@+id/et_wx_number"
+                    style="@style/etStyle01"
+                    android:layout_toRightOf="@+id/tv_wx_number"
+                    android:hint="@string/input_weixin_number" />
+
+                <include
+                    style="@style/lineStyle01"
+                    layout="@layout/layout_line"></include>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/inputLayout">
+
+                <TextView
+                    android:id="@+id/tv_et_zfb_number"
+                    style="@style/tvStyle01"
+                    android:text="@string/zfb_number" />
+
+                <EditText
+                    android:id="@+id/et_zfb_number"
+                    style="@style/etStyle01"
+                    android:layout_toRightOf="@+id/tv_et_zfb_number"
+                    android:hint="@string/input_zfb_number" />
+
+                <include
+                    style="@style/lineStyle01"
+                    layout="@layout/layout_line"></include>
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/inputLayout">
+
+                <TextView
+                    android:id="@+id/recommender_phone"
+                    style="@style/tvStyle01"
+                    android:text="@string/recommender_phone" />
+
+                <EditText
+                    android:id="@+id/et_recommender_phone"
+                    style="@style/etStyle01"
+                    android:layout_toRightOf="@+id/recommender_phone"
+                    android:hint="@string/input_recommender_phone" />
+
+                <include
+                    style="@style/lineStyle01"
+                    layout="@layout/layout_line"></include>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_sure"
+        style="@style/btnStyle01"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="15dp"
+        android:text="@string/sure" />
+</RelativeLayout>
