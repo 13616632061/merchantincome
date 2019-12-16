@@ -32,6 +32,12 @@ public class RouterMapping {
     public static final String ROUTER_ACTIVITY_TOWN = "/app/TownActivity";
     //提现记录
     public static final String ROUTER_ACTIVITY_CASH_RECORD = "/app/CashRecordActivity";
+    //收益规则
+    public static final String ROUTER_ACTIVITY_INCOME_RULE = "/app/IncomeRuleActivity";
+    //服务中心
+    public static final String ROUTER_ACTIVITY_SERVER = "/app/ServiceCenterActivity";
+    //提现结果
+    public static final String ROUTER_ACTIVITY_CASH_RESULT = "/app/CashSuccessActivity";
 
     //toutiao 组建
     //new

@@ -3,10 +3,10 @@ package yzx.com.merchantincome.ui.activity.welcome.view;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.holder.Holder;
 import com.blankj.utilcode.util.BarUtils;
@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import yzx.com.merchantincome.R;
 import yzx.com.merchantincome.constant.RouterMapping;
-import yzx.com.merchantincome.ui.activity.mainActivity.view.MainActivity;
 import yzx.com.merchantincome.ui.activity.welcome.presenter.WelcomeActivityPresenter;
 import yzx.com.merchantincome.ui.adapter.ViewPagerAdapter;
 import yzx.com.merchantincome.view.ImageHolderView;
@@ -26,8 +25,8 @@ import yzx.com.merchantincome.view.ImageHolderView;
 public class WelcomeActivity extends BaseActivity implements IWelcomeActivityImp {
 
 
-    @BindView(R.id.banner)
-    ConvenientBanner banner;
+    @BindView(R.id.view_pager)
+    ViewPager viewPager;
     private WelcomeActivityPresenter mPresenter;
 
     @Override
@@ -54,18 +53,10 @@ public class WelcomeActivity extends BaseActivity implements IWelcomeActivityImp
      * 初始化适配器
      */
     @Override
-    public void initViewPager(ArrayList<Integer> list) {
-        banner.setPages(new CBViewHolderCreator() {
-            @Override
-            public Holder createHolder(View itemView) {
-                return new ImageHolderView(WelcomeActivity.this, itemView);
-            }
+    public void initViewPager(ArrayList<View> list) {
+        ViewPagerAdapter adapter=new ViewPagerAdapter(list);
+        viewPager.setAdapter(adapter);
 
-            @Override
-            public int getLayoutId() {
-                return R.layout.layout_holder_view;
-            }
-        }, list);
     }
 
     /**

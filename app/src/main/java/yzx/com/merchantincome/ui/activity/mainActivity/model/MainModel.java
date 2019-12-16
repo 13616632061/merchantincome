@@ -15,4 +15,24 @@ public class MainModel implements IMainModelImp {
     public Observable getBanner() {
         return ApiRetrofit.getInstance().getApiService().getBanner();
     }
+
+    /**
+     * 获取商户资料
+     * @return
+     */
+    @Override
+    public Observable getUserInfo() {
+        return ApiRetrofit.getInstance().getApiService().getUserInfo();
+    }
+
+    /**
+     * 确定提现
+     * @return
+     */
+    @Override
+    public Observable sureCash(double wle_amount,double retail_amount) {
+        return ApiRetrofit.getInstance().getApiService().sureCash(wle_amount,retail_amount);
+    }
+
+
 }

@@ -4,10 +4,13 @@ import android.text.TextUtils;
 
 import com.apkfuns.logutils.LogUtils;
 import com.blankj.utilcode.util.NetworkUtils;
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.library.app.LibAplication;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -16,10 +19,18 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+import yzx.com.merchantincome.R;
+import yzx.com.merchantincome.entity.RefreshTokenRespone;
+import yzx.com.merchantincome.entity.ResultResponse;
+import yzx.com.merchantincome.entity.UserInfo;
 import yzx.com.merchantincome.util.LoginUserUtil;
 
 /**
@@ -77,12 +88,37 @@ public class ApiRetrofit {
         LogUtils.e("----------Request Start----------------");
         LogUtils.e("| " + request.toString());
         LogUtils.e("| Response:" + content);
+        if (overDueToken(content)){
+            String newToken=getNewToken();
+            Request newRequest = chain.request().newBuilder()
+                    .addHeader("token", newToken)
+                    .build();
+            return chain.proceed(newRequest);
+        }
         LogUtils.e("| Response:" + response);
         LogUtils.e("----------Request End:" + duration + "毫秒----------");
         return response.newBuilder()
                 .body(okhttp3.ResponseBody.create(mediaType, content))
                 .build();
     };
+
+    /**
+     * Token是否过期
+     *
+     * @param content
+     * @return
+     */
+    private boolean overDueToken(String content) {
+        boolean isOverDue = false;
+        ResultResponse response = new Gson().fromJson(content, ResultResponse.class);
+        switch (response.getStatus()) {
+            case -4:
+                isOverDue = true;
+                break;
+        }
+        return isOverDue;
+
+    }
 
     /**
      * 增加头部信息的拦截器
@@ -94,12 +130,11 @@ public class ApiRetrofit {
         builder.addHeader("Upgrade-Insecure-Requests", "1");
         builder.addHeader("X-Requested-With", "XMLHttpRequest");
         builder.addHeader("Cookie", "uuid=\"w:f2e0e469165542f8a3960f67cb354026\"; __tasessionId=4p6q77g6q1479458262778; csrftoken=7de2dd812d513441f85cf8272f015ce5; tt_webid=36385357187");
-        if (LoginUserUtil.getInstance().getLoginUser()!=null){
+        if (LoginUserUtil.getInstance().getLoginUser() != null) {
             builder.addHeader("token", LoginUserUtil.getInstance().getLoginUser().getResult().getToken());
         }
         return chain.proceed(builder.build());
     };
-
 
     public ApiRetrofit() {
         //cache url
@@ -143,5 +178,27 @@ public class ApiRetrofit {
         return mApiService;
     }
 
-
+    /**
+     * 获取新Token
+     *
+     * @return
+     */
+    public String getNewToken() {
+        String newToken = null;
+        UserInfo userInfo = LoginUserUtil.getInstance().getLoginUser();
+        if (userInfo == null) {
+            return newToken;
+        }
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiConstant.BASE_SERVER_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        try {
+            retrofit2.Response<RefreshTokenRespone> tokenJson = retrofit.create(ApiService.class).refreshToken(userInfo.getResult().getToken(), userInfo.getResult().getRefresh_token()).execute();
+            newToken=tokenJson.body().getToken();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return newToken;
+    }
 }

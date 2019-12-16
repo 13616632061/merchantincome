@@ -10,4 +10,10 @@ public interface IMainModelImp {
 
     //获取轮播广告
     Observable getBanner();
+
+    //获取商户资料
+    Observable getUserInfo();
+
+    //确定提现
+    Observable sureCash(double wle_amount,double retail_amount);
 }

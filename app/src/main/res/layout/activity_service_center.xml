@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_cccccc"
+    android:orientation="vertical"
+    tools:context="yzx.com.merchantincome.ui.activity.serviceCenter.view.ServiceCenterActivity">
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/layout_title_bar"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title_bar"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <EditText
+            android:id="@+id/login_phone"
+            style="@style/inputStyle02"
+            android:drawableLeft="@mipmap/log_phone_login"
+            android:hint="输入服务人手机号"
+            android:inputType="number" />
+
+        <include
+            style="@style/lineStyle01"
+            layout="@layout/layout_line"></include>
+
+        <TextView
+            android:id="@+id/tv_area"
+            style="@style/inputStyle02"
+            android:drawableLeft="@mipmap/icon_type"
+            android:drawableRight="@mipmap/icon_next_gray"
+            android:gravity="center_vertical"
+            android:hint="选择服务类型（可多选）"
+            android:inputType="number" />
+
+        <include
+            style="@style/lineStyle01"
+            layout="@layout/layout_line"></include>
+
+        <EditText
+            style="@style/inputStyle02"
+            android:layout_height="200dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/color_cccccc"
+            android:gravity="left"
+            android:hint="输入详细的服务需求(选填)"
+            android:inputType="number"
+            android:padding="15dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_registe"
+        style="@style/btnStyle01"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:text="提交" />
+</RelativeLayout>

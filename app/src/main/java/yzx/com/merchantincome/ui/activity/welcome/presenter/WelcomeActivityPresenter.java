@@ -48,9 +48,15 @@ public class WelcomeActivityPresenter implements IWelcomeActivityPresenterImp {
 
     @Override
     public void initPageData() {
-        ArrayList<Integer> pic = new ArrayList<>();
-        pic.add(R.mipmap.welcome02);
-        mView.initViewPager(pic);
+        ArrayList<View> pageViews = new ArrayList<>();
+        int pic[] = {R.mipmap.welcome02};
+        for (int i = 0; i < pic.length; i++) {
+            ImageView imageView = new ImageView(mView);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setImageResource(pic[i]);
+            pageViews.add(imageView);
+        }
+        mView.initViewPager(pageViews);
     }
 
 

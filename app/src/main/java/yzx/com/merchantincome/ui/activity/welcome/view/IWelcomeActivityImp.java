@@ -1,5 +1,7 @@
 package yzx.com.merchantincome.ui.activity.welcome.view;
 
+import android.view.View;
+
 import java.util.ArrayList;
 
 import yzx.com.merchantincome.ui.adapter.ViewPagerAdapter;
@@ -11,7 +13,7 @@ import yzx.com.merchantincome.ui.adapter.ViewPagerAdapter;
 public interface IWelcomeActivityImp {
 
     //初始化
-    void initViewPager(ArrayList<Integer> list);
+    void initViewPager(ArrayList<View> list);
 
     //跳转到主页
     void goToMain();

@@ -4,7 +4,12 @@ import com.apkfuns.logutils.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+import yzx.com.merchantincome.entity.RefreshTokenRespone;
 import yzx.com.merchantincome.entity.ResultResponse;
+import yzx.com.merchantincome.entity.UserInfo;
+import yzx.com.merchantincome.util.LoginUserUtil;
 
 /**
  * Created by Administrator on 2019/5/13.
@@ -17,12 +22,19 @@ public abstract class SubscriberCallBack<T> extends Subscriber<ResultResponse<T>
         LogUtils.e("----------Response:" + response);
         boolean isSuccess = (response != null && response.status == 1);
         LogUtils.e("----------Response:  isSuccess:  " + isSuccess);
-        if (isSuccess) {
-            onSuccess((T) response);
-        } else {
-            ToastUtils.showShort(response.msg);
-            onFailure(response);
+        switch (response.status) {
+            case 1://请求成功
+                onSuccess((T) response);
+                break;
+            case -4://token 过期
+//                refreshToken();
+                break;
+            default://其他错误
+                ToastUtils.showShort(response.msg);
+                onFailure(response);
+                break;
         }
+
     }
 
     @Override
@@ -42,4 +54,5 @@ public abstract class SubscriberCallBack<T> extends Subscriber<ResultResponse<T>
 
     protected void onFailure(ResultResponse response) {
     }
+
 }

@@ -16,6 +16,7 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.holder.Holder;
 import com.bigkoo.convenientbanner.utils.ScreenUtil;
+import com.blankj.utilcode.util.ToastUtils;
 import com.library.base.mvp.BaseActivity;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import yzx.com.merchantincome.R;
 import yzx.com.merchantincome.constant.RouterMapping;
+import yzx.com.merchantincome.entity.BannerResponse;
 import yzx.com.merchantincome.ui.activity.mainActivity.presenter.MainPresenter;
 import yzx.com.merchantincome.view.ImageHolderView;
 
@@ -87,14 +89,11 @@ public class MainActivity extends BaseActivity implements IMainViewImp {
         initTitle(getResources().getString(R.string.app_name), true, getResources().getString(R.string.withdrawals_record));
         mPresenter = new MainPresenter(this);
         mPresenter.initBanner();
-        mPresenter.setName("");
-        mPresenter.setPhone("");
-        mPresenter.setDispatchProfit("");
-        mPresenter.setRetailProfit("");
+        mPresenter.getUserInfo();
 
     }
 
-    @OnClick({R.id.tv_right, R.id.tv_my_order, R.id.iv_menu, R.id.tv_outLogin, R.id.tv_shopper_info, R.id.tv_explain})
+    @OnClick({R.id.tv_right, R.id.tv_my_order, R.id.iv_menu, R.id.tv_outLogin, R.id.tv_shopper_info, R.id.tv_explain, R.id.tv_income_rule, R.id.tv_service, R.id.btn_sure_cash})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_menu://菜单
@@ -110,6 +109,15 @@ public class MainActivity extends BaseActivity implements IMainViewImp {
                 mPresenter.toGoMyOrder();
                 break;
             case R.id.tv_explain://手机应用说明
+                break;
+            case R.id.tv_income_rule://收益规则
+                mPresenter.toGoInComeRule();
+                break;
+            case R.id.tv_service://服务中心
+                mPresenter.toGoServerCenter();
+                break;
+            case R.id.btn_sure_cash://确定提现
+                mPresenter.sureCash();
                 break;
 
             case R.id.tv_outLogin://退出登录
@@ -143,6 +151,31 @@ public class MainActivity extends BaseActivity implements IMainViewImp {
     }
 
     /**
+     * 收益规则
+     */
+    @Override
+    public void toGoInComeRule() {
+        routerNavigation(RouterMapping.ROUTER_ACTIVITY_INCOME_RULE);
+    }
+
+    /**
+     * 服务中心
+     */
+    @Override
+    public void toGoServerCenter() {
+        routerNavigation(RouterMapping.ROUTER_ACTIVITY_SERVER);
+
+    }
+
+    /**
+     * 提现成功
+     */
+    @Override
+    public void cashSuccess() {
+        routerNavigation(RouterMapping.ROUTER_ACTIVITY_CASH_RESULT);
+    }
+
+    /**
      * 退出登录
      */
     @Override
@@ -152,7 +185,7 @@ public class MainActivity extends BaseActivity implements IMainViewImp {
     }
 
     @Override
-    public void initBanner(ArrayList<String> list) {
+    public void initBanner(ArrayList<BannerResponse.ResultBean.ListBean> list) {
         ivBack.setVisibility(View.GONE);
         ivMenu.setVisibility(View.VISIBLE);
         int screenW = ScreenUtil.getScreenWidth(this);
@@ -226,6 +259,36 @@ public class MainActivity extends BaseActivity implements IMainViewImp {
     }
 
     /**
+     * 获取批发收益
+     *
+     * @return
+     */
+    @Override
+    public String getDispatchProfit() {
+        return etDispatchCash.getText().toString().trim();
+    }
+
+    /**
+     * 获取零售收益
+     *
+     * @return
+     */
+    @Override
+    public String getRetailProfit() {
+        return etRetailCash.getText().toString().trim();
+    }
+
+    /**
+     * 获取密码
+     *
+     * @return
+     */
+    @Override
+    public String getPwd() {
+        return etPwd.getText().toString().trim();
+    }
+
+    /**
      * 温馨提示
      *
      * @param tips
@@ -235,11 +298,25 @@ public class MainActivity extends BaseActivity implements IMainViewImp {
         tvTips.setText(getResources().getString(R.string.tips) + "：" + tips);
     }
 
-
+    /**
+     * 显示提示信息
+     *
+     * @param type
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    public void showMsg(int type) {
+        switch (type) {
+            case 1://请输入提现金额
+                ToastUtils.showShort(getResources().getString(R.string.input_cash_num));
+                break;
+            case 2://提现金额大于收益金额，请重新输入
+                ToastUtils.showShort(getResources().getString(R.string.error_cash_num));
+                break;
+            case 3://input_pwd
+                ToastUtils.showShort(getResources().getString(R.string.input_pwd));
+                break;
+        }
     }
+
+
 }

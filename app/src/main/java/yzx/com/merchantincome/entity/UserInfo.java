@@ -8,7 +8,7 @@ public class UserInfo extends ResultResponse {
 
 
     /**
-     * result : {"id":4,"name":"张三","mobile":"13616632061","bank":"","account":"","vx":"","alipay":"","pass":"ab4c822bd33e0cf983d3a735be9d8432","re_mobile":"13129519607","address_id":858,"is_receive_goods":0,"wle_income":"0.00","retail_income":"0.00","token":"9fa85d9d17231c1f5d4ffb2a0fbdaa51"}
+     * result : {"id":4,"name":"张三","mobile":"13616632061","bank":"","account":"","vx":"","alipay":"","pass":"ab4c822bd33e0cf983d3a735be9d8432","re_mobile":"13129519607","address_id":858,"is_receive_goods":0,"wle_income":"0.00","retail_income":"0.00","token":"3697bcbe981d58c6ae028b3e983f0b83","createtime":0,"last_login_time":1576464533,"refresh_token":"b1f2da0921085b2d9bb2e3fd86e759e7"}
      */
 
     private ResultBean result;
@@ -36,7 +36,10 @@ public class UserInfo extends ResultResponse {
          * is_receive_goods : 0
          * wle_income : 0.00
          * retail_income : 0.00
-         * token : 9fa85d9d17231c1f5d4ffb2a0fbdaa51
+         * token : 3697bcbe981d58c6ae028b3e983f0b83
+         * createtime : 0
+         * last_login_time : 1576464533
+         * refresh_token : b1f2da0921085b2d9bb2e3fd86e759e7
          */
 
         private int id;
@@ -53,6 +56,9 @@ public class UserInfo extends ResultResponse {
         private String wle_income;
         private String retail_income;
         private String token;
+        private int createtime;
+        private int last_login_time;
+        private String refresh_token;
 
         public int getId() {
             return id;
@@ -164,6 +170,30 @@ public class UserInfo extends ResultResponse {
 
         public void setToken(String token) {
             this.token = token;
+        }
+
+        public int getCreatetime() {
+            return createtime;
+        }
+
+        public void setCreatetime(int createtime) {
+            this.createtime = createtime;
+        }
+
+        public int getLast_login_time() {
+            return last_login_time;
+        }
+
+        public void setLast_login_time(int last_login_time) {
+            this.last_login_time = last_login_time;
+        }
+
+        public String getRefresh_token() {
+            return refresh_token;
+        }
+
+        public void setRefresh_token(String refresh_token) {
+            this.refresh_token = refresh_token;
         }
     }
 }

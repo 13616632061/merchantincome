@@ -28,5 +28,13 @@ public class ApiConstant {
     public static final String LOGIN = "seller/login/do_login";
     //轮播广告
     public static final String BANNER = "seller/goods/bannerlist.html";
+    //商户资料
+    public static final String USER_INFO = "seller/user/userinfo.html";
+    //刷新令牌
+    public static final String REFRESH_TOKEN = "seller/token/refreshtoken.html";
+    //确定提现
+    public static final String SURE_CASH = "seller/user/cash.html";
+    //提现记录
+    public static final String CASH_RECORD = "seller/user/cashlogs.html";
 
 }

@@ -3,6 +3,7 @@ package yzx.com.merchantincome.api;
 
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -10,7 +11,9 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Field;
 import rx.Observable;
+import yzx.com.merchantincome.entity.BannerResponse;
 import yzx.com.merchantincome.entity.ProvinceResponse;
+import yzx.com.merchantincome.entity.RefreshTokenRespone;
 import yzx.com.merchantincome.entity.ResultResponse;
 import yzx.com.merchantincome.entity.SmsCodeRespone;
 import yzx.com.merchantincome.entity.UserInfo;
@@ -81,11 +84,37 @@ public interface ApiService {
     Observable<UserInfo> login(@Field("mobile") String mobile, @Field("pass") String pass);
 
     /**
+     * 刷新令牌
+     *
+     * @return
+     */
+    @POST(ApiConstant.REFRESH_TOKEN)
+    @FormUrlEncoded
+    Call<RefreshTokenRespone> refreshToken(@Field("token") String token, @Field("refresh_token") String refresh_token);
+
+    /**
      * 轮播广告
      *
      * @return
      */
     @GET(ApiConstant.BANNER)
-    Observable<UserInfo> getBanner();
+    Observable<BannerResponse> getBanner();
+
+    /**
+     * 商户资料
+     *
+     * @return
+     */
+    @GET(ApiConstant.USER_INFO)
+    Observable<UserInfo> getUserInfo();
+
+    /**
+     * 确定提现
+     *
+     * @return
+     */
+    @POST(ApiConstant.SURE_CASH)
+    @FormUrlEncoded
+    Observable<ResultResponse> sureCash(@Field("wle_amount") double wle_amount, @Field("retail_amount") double retail_amount);
 
 }

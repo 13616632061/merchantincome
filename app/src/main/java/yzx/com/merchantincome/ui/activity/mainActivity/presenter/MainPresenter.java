@@ -1,5 +1,7 @@
 package yzx.com.merchantincome.ui.activity.mainActivity.presenter;
 
+import android.text.TextUtils;
+
 import com.google.gson.Gson;
 import com.library.base.mvp.BasePresenter;
 import com.library.utils.SPUtils;
@@ -7,6 +9,8 @@ import com.library.utils.SPUtils;
 import java.util.ArrayList;
 
 import yzx.com.merchantincome.api.SubscriberCallBack;
+import yzx.com.merchantincome.entity.BannerResponse;
+import yzx.com.merchantincome.entity.ResultResponse;
 import yzx.com.merchantincome.entity.UserInfo;
 import yzx.com.merchantincome.ui.activity.mainActivity.model.MainModel;
 import yzx.com.merchantincome.ui.activity.mainActivity.view.MainActivity;
@@ -29,47 +33,40 @@ public class MainPresenter extends BasePresenter<MainActivity> implements IPrese
 
     @Override
     public void initBanner() {
-        ArrayList<String> list = new ArrayList<>();
-        list.add("https://ss1.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=92afee66fd36afc3110c39658318eb85/908fa0ec08fa513db777cf78376d55fbb3fbd9b3.jpg");
-        list.add("https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=b38f3fc35b0fd9f9bf175369152cd42b/9a504fc2d5628535bdaac29e9aef76c6a6ef63c2.jpg");
-       addSubscription(mModel.getBanner(), new SubscriberCallBack() {
-           @Override
-           protected void onSuccess(Object response) {
+        ArrayList<BannerResponse.ResultBean.ListBean> list = new ArrayList<>();
+        addSubscription(mModel.getBanner(), new SubscriberCallBack<BannerResponse>() {
+            @Override
+            protected void onSuccess(BannerResponse response) {
+                list.addAll(response.getResult().getList());
+            }
 
-           }
+            @Override
+            protected void onError() {
 
-           @Override
-           protected void onError() {
-
-           }
-       });
-
+            }
+        });
         mView.initBanner(list);
     }
 
+    /**
+     * 获取商户资料
+     */
     @Override
-    public void setName(String name) {
-        mView.setName("马云");
-    }
+    public void getUserInfo() {
+        addSubscription(mModel.getUserInfo(), new SubscriberCallBack<UserInfo>() {
+            @Override
+            protected void onSuccess(UserInfo response) {
+                mView.setName(response.getResult().getName());
+                mView.setPhone(response.getResult().getMobile());
+                mView.setDispatchProfit(response.getResult().getWle_income());
+                mView.setRetailProfit(response.getResult().getRetail_income());
+            }
 
-    @Override
-    public void setPhone(String phone) {
-        mView.setPhone("13129519607");
-    }
+            @Override
+            protected void onError() {
 
-    @Override
-    public void setDispatchProfit(String profit) {
-        mView.setDispatchProfit("15000元");
-    }
-
-    @Override
-    public void setRetailProfit(String profit) {
-        mView.setRetailProfit("1000元");
-    }
-
-    @Override
-    public void setTips(String tips) {
-
+            }
+        });
     }
 
     /**
@@ -89,11 +86,74 @@ public class MainPresenter extends BasePresenter<MainActivity> implements IPrese
     }
 
     /**
+     * 确定提现
+     */
+    @Override
+    public void sureCash() {
+        String dispatchProfit = mView.getDispatchProfit();
+        String retailProfit = mView.getRetailProfit();
+        if (TextUtils.isEmpty(dispatchProfit) && TextUtils.isEmpty(retailProfit)) {
+            mView.showMsg(1);
+            return;
+        }
+        double dispatchProfitNum = 0.00;//用户输入提现的批发金额
+        double retailProfitNum = 0.00;//用户输入提现的零售金额
+        if (!TextUtils.isEmpty(dispatchProfit)) {
+            dispatchProfitNum = Double.parseDouble(dispatchProfit);
+        }
+        if (!TextUtils.isEmpty(retailProfit)) {
+            retailProfitNum = Double.parseDouble(retailProfit);
+        }
+        //用户拥有的批发收益
+        double totalDispatchProfitNum = Double.parseDouble(LoginUserUtil.getInstance().getLoginUser().getResult().getWle_income());
+        //用户拥有的零售收益
+        double totalRetailProfitNum = Double.parseDouble(LoginUserUtil.getInstance().getLoginUser().getResult().getRetail_income());
+
+        if (dispatchProfitNum > totalDispatchProfitNum || retailProfitNum > totalRetailProfitNum) {
+            mView.showMsg(2);
+            return;
+        }
+        if (TextUtils.isEmpty(mView.getPwd())) {
+            mView.showMsg(3);
+            return;
+        }
+        addSubscription(mModel.sureCash(dispatchProfitNum, retailProfitNum), new SubscriberCallBack<ResultResponse>() {
+            @Override
+            protected void onSuccess(ResultResponse response) {
+                getUserInfo();
+                mView.cashSuccess();
+            }
+
+            @Override
+            protected void onError() {
+
+            }
+
+        });
+    }
+
+    /**
      * 提现记录
      */
     @Override
     public void toGoCashRecord() {
         mView.toGoCashRecord();
+    }
+
+    /**
+     * 收益规则
+     */
+    @Override
+    public void toGoInComeRule() {
+        mView.toGoInComeRule();
+    }
+
+    /**
+     * 服务中心
+     */
+    @Override
+    public void toGoServerCenter() {
+        mView.toGoServerCenter();
     }
 
     /**

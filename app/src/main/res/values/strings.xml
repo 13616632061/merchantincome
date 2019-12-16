@@ -11,6 +11,7 @@
     <string name="forget_pwd">忘记密码</string>
     <string name="login">登录</string>
     <string name="regist">注册</string>
+    <string name="complete">完成</string>
     <string name="edit_pwd">修改密码</string>
     <string name="pwd">密码</string>
     <string name="sure">确定</string>
@@ -69,5 +70,11 @@
     <string name="error_recommender_phone">邀请人手机号码不正确</string>
     <string name="phone_explain">手机应用说明</string>
     <string name="outLogin">退出登录</string>
+    <string name="service">服务中心</string>
+    <string name="income_rule">收益规则</string>
+    <string name="my_income">我的收益</string>
+    <string name="input_cash_num">请输入提现金额</string>
+    <string name="error_cash_num">提现金额大于收益金额，请重新输入</string>
+    <string name="cash_result">提现结果</string>
 
 </resources>
