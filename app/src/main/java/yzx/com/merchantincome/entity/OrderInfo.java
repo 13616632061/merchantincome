@@ -4,7 +4,7 @@ package yzx.com.merchantincome.entity;
  * Created by Administrator on 2019/12/6.
  */
 
-public class OrderInfo {
+public class OrderInfo extends ResultResponse{
 
     private String orderNum;
     private String orderTime;

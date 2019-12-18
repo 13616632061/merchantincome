@@ -1,5 +1,8 @@
 package yzx.com.merchantincome.util;
 
+import com.google.gson.Gson;
+import com.library.utils.SPUtils;
+
 import yzx.com.merchantincome.entity.UserInfo;
 
 /**
@@ -34,5 +37,7 @@ public class LoginUserUtil {
 
     public void setLoginUser(UserInfo loginUser) {
         this.loginUser = loginUser;
+        String userInfoStr=new Gson().toJson(loginUser);
+        SPUtils.getInstance().put("userInfo",userInfoStr);
     }
 }

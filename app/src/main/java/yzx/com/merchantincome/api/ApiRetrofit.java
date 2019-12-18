@@ -1,5 +1,6 @@
 package yzx.com.merchantincome.api;
 
+import android.graphics.Bitmap;
 import android.text.TextUtils;
 
 import com.apkfuns.logutils.LogUtils;
@@ -8,6 +9,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.library.app.LibAplication;
+import com.library.utils.SPUtils;
+import com.library.utils.TimeUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -88,8 +91,12 @@ public class ApiRetrofit {
         LogUtils.e("----------Request Start----------------");
         LogUtils.e("| " + request.toString());
         LogUtils.e("| Response:" + content);
-        if (overDueToken(content)){
-            String newToken=getNewToken();
+        if (LoginUserUtil.getInstance().getLoginUser() != null) {
+            LogUtils.e("| 旧Token:" + LoginUserUtil.getInstance().getLoginUser().getResult().getToken());
+        }
+        LogUtils.e("| Token是否过期:" + overDueToken(content));
+        if (overDueToken(content)) {
+            String newToken = getNewToken();
             Request newRequest = chain.request().newBuilder()
                     .addHeader("token", newToken)
                     .build();
@@ -184,21 +191,46 @@ public class ApiRetrofit {
      * @return
      */
     public String getNewToken() {
-        String newToken = null;
+        final String[] newToken = {null};
         UserInfo userInfo = LoginUserUtil.getInstance().getLoginUser();
         if (userInfo == null) {
-            return newToken;
+            return newToken[0];
         }
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiConstant.BASE_SERVER_URL)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())//支持RxJava
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         try {
-            retrofit2.Response<RefreshTokenRespone> tokenJson = retrofit.create(ApiService.class).refreshToken(userInfo.getResult().getToken(), userInfo.getResult().getRefresh_token()).execute();
-            newToken=tokenJson.body().getToken();
-        } catch (IOException e) {
+//            retrofit2.Response<RefreshTokenRespone> tokenJson = retrofit.create(ApiService.class).refreshToken(userInfo.getResult().getToken(), userInfo.getResult().getRefresh_token()).execute();
+            retrofit.create(ApiService.class).refreshToken(userInfo.getResult().getToken(), userInfo.getResult().getRefresh_token())
+                    .observeOn(AndroidSchedulers.mainThread())//在Android主线程中展示
+                    .subscribe(new Subscriber<RefreshTokenRespone>() {
+
+                        @Override
+                        public void onCompleted() {
+                        }
+
+                        @Override
+                        public void onError(Throwable arg0) {
+                        }
+
+                        @Override
+                        public void onNext(RefreshTokenRespone respone) {
+                            newToken[0] = respone.getToken();
+                            LogUtils.e("| newToken:" + newToken[0]);
+                            if (!TextUtils.isEmpty(newToken[0])){
+                                userInfo.getResult().setToken(newToken[0]);
+                                LoginUserUtil.getInstance().setLoginUser(userInfo);
+                            }
+                        }
+                    });
+
+
+        } catch (Exception e) {
             e.printStackTrace();
+            LogUtils.e("| newToken_error:" + e.toString());
         }
-        return newToken;
+        return newToken[0];
     }
 }

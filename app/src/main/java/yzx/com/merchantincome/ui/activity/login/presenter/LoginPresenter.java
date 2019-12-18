@@ -57,8 +57,6 @@ public class LoginPresenter extends BasePresenter<LoginActivity>implements IPres
         addSubscription(mModel.login(mView.getPhone(), mView.getPwd()), new SubscriberCallBack<UserInfo>() {
             @Override
             protected void onSuccess(UserInfo response) {
-                String userInfo=new Gson().toJson(response);
-                SPUtils.getInstance().put("userInfo",userInfo);
                 LoginUserUtil.getInstance().setLoginUser(response);
 
                 mView.toGoMain();

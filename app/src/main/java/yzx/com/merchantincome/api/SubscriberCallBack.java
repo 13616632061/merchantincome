@@ -26,9 +26,6 @@ public abstract class SubscriberCallBack<T> extends Subscriber<ResultResponse<T>
             case 1://请求成功
                 onSuccess((T) response);
                 break;
-            case -4://token 过期
-//                refreshToken();
-                break;
             default://其他错误
                 ToastUtils.showShort(response.msg);
                 onFailure(response);

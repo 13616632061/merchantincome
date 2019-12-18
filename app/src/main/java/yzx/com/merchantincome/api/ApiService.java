@@ -12,6 +12,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Field;
 import rx.Observable;
 import yzx.com.merchantincome.entity.BannerResponse;
+import yzx.com.merchantincome.entity.CashRecordResponse;
 import yzx.com.merchantincome.entity.ProvinceResponse;
 import yzx.com.merchantincome.entity.RefreshTokenRespone;
 import yzx.com.merchantincome.entity.ResultResponse;
@@ -90,7 +91,7 @@ public interface ApiService {
      */
     @POST(ApiConstant.REFRESH_TOKEN)
     @FormUrlEncoded
-    Call<RefreshTokenRespone> refreshToken(@Field("token") String token, @Field("refresh_token") String refresh_token);
+    Observable<RefreshTokenRespone> refreshToken(@Field("token") String token, @Field("refresh_token") String refresh_token);
 
     /**
      * 轮播广告
@@ -116,5 +117,28 @@ public interface ApiService {
     @POST(ApiConstant.SURE_CASH)
     @FormUrlEncoded
     Observable<ResultResponse> sureCash(@Field("wle_amount") double wle_amount, @Field("retail_amount") double retail_amount);
+
+    /**
+     * 修改商户资料
+     *
+     * @param bank    开户行
+     * @param account 银行账号
+     * @param vx      微信账号
+     * @param alipay  支付宝账号
+     * @return
+     */
+    @POST(ApiConstant.EDIT_INFO)
+    @FormUrlEncoded
+    Observable<ResultResponse> editInfo(@Field("bank") String bank, @Field("account") String account, @Field("vx") String vx,
+                                        @Field("alipay") String alipay);
+
+    /**
+     * 商户资料
+     *
+     * @return
+     */
+    @POST(ApiConstant.CASH_RECORD)
+    @FormUrlEncoded
+    Observable<CashRecordResponse> getCashRecord(@Field("page") int page);
 
 }

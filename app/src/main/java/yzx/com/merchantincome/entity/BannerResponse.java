@@ -72,7 +72,7 @@ public class BannerResponse extends ResultResponse{
             }
 
             public void setImg_url(String img_url) {
-                this.img_url = img_url;
+                this.img_url =img_url;
             }
 
             public String getUrl() {

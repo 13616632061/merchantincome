@@ -3,6 +3,7 @@ package yzx.com.merchantincome.ui.activity.mainActivity.view;
 
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +32,7 @@ import yzx.com.merchantincome.ui.activity.mainActivity.presenter.MainPresenter;
 import yzx.com.merchantincome.view.ImageHolderView;
 
 @Route(path = RouterMapping.ROUTER_ACTIVITY_MAIN)
-public class MainActivity extends BaseActivity implements IMainViewImp {
+public class MainActivity extends BaseActivity implements IMainViewImp, SwipeRefreshLayout.OnRefreshListener {
 
 
     @BindView(R.id.banner)
@@ -76,6 +77,8 @@ public class MainActivity extends BaseActivity implements IMainViewImp {
     DrawerLayout drawerLayout;
     @BindView(R.id.left_layout)
     LinearLayout leftLayout;
+    @BindView(R.id.refresh)
+    SwipeRefreshLayout refresh;
 
     private MainPresenter mPresenter;
 
@@ -87,8 +90,10 @@ public class MainActivity extends BaseActivity implements IMainViewImp {
     @Override
     protected void initView() {
         initTitle(getResources().getString(R.string.app_name), true, getResources().getString(R.string.withdrawals_record));
+        ivBack.setVisibility(View.GONE);
+        ivMenu.setVisibility(View.VISIBLE);
+        refresh.setOnRefreshListener(this);
         mPresenter = new MainPresenter(this);
-        mPresenter.initBanner();
         mPresenter.getUserInfo();
 
     }
@@ -186,8 +191,6 @@ public class MainActivity extends BaseActivity implements IMainViewImp {
 
     @Override
     public void initBanner(ArrayList<BannerResponse.ResultBean.ListBean> list) {
-        ivBack.setVisibility(View.GONE);
-        ivMenu.setVisibility(View.VISIBLE);
         int screenW = ScreenUtil.getScreenWidth(this);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         params.width = screenW;
@@ -312,11 +315,29 @@ public class MainActivity extends BaseActivity implements IMainViewImp {
             case 2://提现金额大于收益金额，请重新输入
                 ToastUtils.showShort(getResources().getString(R.string.error_cash_num));
                 break;
-            case 3://input_pwd
+            case 3://请输入密码
                 ToastUtils.showShort(getResources().getString(R.string.input_pwd));
+                break;
+            case 4://密码错误
+                ToastUtils.showShort(getResources().getString(R.string.error_pwd));
                 break;
         }
     }
 
+    /**
+     * 设置刷新状态
+     * @param refreshing
+     */
+    @Override
+    public void setRefreshing(boolean refreshing) {
+        refresh.setRefreshing(refreshing);
+    }
 
+    /**
+     * 刷新
+     */
+    @Override
+    public void onRefresh() {
+        mPresenter.getUserInfo();
+    }
 }

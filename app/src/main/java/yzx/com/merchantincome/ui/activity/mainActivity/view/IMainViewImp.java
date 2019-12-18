@@ -59,4 +59,7 @@ public interface IMainViewImp {
 
     //显示提示信息
     void showMsg(int type);
+
+    //设置刷新状态
+    void setRefreshing(boolean refreshing);
 }

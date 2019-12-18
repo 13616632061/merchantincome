@@ -38,6 +38,11 @@ public class MainPresenter extends BasePresenter<MainActivity> implements IPrese
             @Override
             protected void onSuccess(BannerResponse response) {
                 list.addAll(response.getResult().getList());
+                for (int i=0;i<list.size();i++){
+                    String url=response.getResult().getDomain()+list.get(i).getImg_url();
+                    list.get(i).setImg_url(url);
+                }
+                mView.initBanner(list);
             }
 
             @Override
@@ -45,7 +50,6 @@ public class MainPresenter extends BasePresenter<MainActivity> implements IPrese
 
             }
         });
-        mView.initBanner(list);
     }
 
     /**
@@ -56,15 +60,18 @@ public class MainPresenter extends BasePresenter<MainActivity> implements IPrese
         addSubscription(mModel.getUserInfo(), new SubscriberCallBack<UserInfo>() {
             @Override
             protected void onSuccess(UserInfo response) {
+                mView.setRefreshing(false);
                 mView.setName(response.getResult().getName());
                 mView.setPhone(response.getResult().getMobile());
                 mView.setDispatchProfit(response.getResult().getWle_income());
                 mView.setRetailProfit(response.getResult().getRetail_income());
+
+                initBanner();
             }
 
             @Override
             protected void onError() {
-
+                mView.setRefreshing(false);
             }
         });
     }
@@ -115,6 +122,10 @@ public class MainPresenter extends BasePresenter<MainActivity> implements IPrese
         }
         if (TextUtils.isEmpty(mView.getPwd())) {
             mView.showMsg(3);
+            return;
+        }
+        if (!mView.getPwd().equals(LoginUserUtil.getInstance().getLoginUser().getResult().getPass())){
+            mView.showMsg(4);
             return;
         }
         addSubscription(mModel.sureCash(dispatchProfitNum, retailProfitNum), new SubscriberCallBack<ResultResponse>() {

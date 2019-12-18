@@ -58,9 +58,11 @@
     <string name="empty_area">所在地区为空</string>
     <string name="empty_detail_adress">详细地址为空</string>
     <string name="empty_account">开户行信息，微信账号，支付宝账号至少有一个不为空</string>
+    <string name="one_account">开户行信息，微信账号，支付宝账号,填写一个即可</string>
     <string name="empty_pwd">密码为空</string>
     <string name="empty_sure_pwd">确认密码为空</string>
     <string name="no_equals_pwd">密码和确认密码不同</string>
+    <string name="error_pwd">密码错误</string>
     <string name="empty_invitation_phone">邀请人手机为空</string>
     <string name="empty_sms">短信验证码为空</string>
     <string name="empty_image_code">图片验证码为空</string>
@@ -76,5 +78,10 @@
     <string name="input_cash_num">请输入提现金额</string>
     <string name="error_cash_num">提现金额大于收益金额，请重新输入</string>
     <string name="cash_result">提现结果</string>
+    <string name="examine_ing">审核中</string>
+    <string name="cash_sucess">提现成功</string>
+    <string name="not_pass">未通过</string>
+    <string name="cash">提现</string>
+    <string name="type">类型</string>
 
 </resources>

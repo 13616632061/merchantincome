@@ -156,45 +156,6 @@ public class RegisterActivity extends BaseActivity implements IRegisterViewImp {
         return etAdress.getText().toString().trim();
     }
 
-//    /**
-//     * 获取开户行
-//     *
-//     * @return
-//     */
-//    @Override
-//    public String getOpenBank() {
-//        return etOpenBank.getText().toString().trim();
-//    }
-//
-//    /**
-//     * 获取银行卡号
-//     *
-//     * @return
-//     */
-//    @Override
-//    public String getBankNum() {
-//        return etAccount.getText().toString().trim();
-//    }
-//
-//    /**
-//     * 获取微信账号
-//     *
-//     * @return
-//     */
-//    @Override
-//    public String getWXAccount() {
-//        return etWxNumber.getText().toString().trim();
-//    }
-//
-//    /**
-//     * 获取支付宝账号
-//     *
-//     * @return
-//     */
-//    @Override
-//    public String getZfbAccount() {
-//        return etZfbNumber.getText().toString().trim();
-//    }
 
     /**
      * 获取密码

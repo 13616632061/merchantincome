@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@color/white"
+    android:paddingBottom="8dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="8dp">
+
+    <TextView
+        android:id="@+id/tv_time"
+        style="@style/tvStyle02"
+        android:lines="1"
+        android:text="2019-12-18 15:02:27" />
+
+    <TextView
+        android:id="@+id/tv_status"
+        style="@style/tvStyle02"
+        android:layout_alignParentRight="true"
+        android:text="审核中" />
+
+    <TextView
+        android:id="@+id/tv_type"
+        style="@style/tvStyle02"
+        android:layout_alignParentBottom="true"
+        android:text="类型：提现" />
+
+    <TextView
+        android:id="@+id/tv_money"
+        style="@style/tvStyle02"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="$1000" />
+</RelativeLayout>

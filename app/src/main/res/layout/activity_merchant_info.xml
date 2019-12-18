@@ -5,177 +5,144 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="yzx.com.merchantincome.ui.activity.merchantInfo.MerchantInfoActivity">
+    tools:context="yzx.com.merchantincome.ui.activity.merchantInfo.view.MerchantInfoActivity">
 
     <include
         android:id="@+id/title_bar"
         layout="@layout/layout_title_bar"></include>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title_bar"
-        android:paddingBottom="10dp"
-        android:scrollbars="none">
 
-        <LinearLayout
+        <ScrollView
+            android:layout_below="@+id/title_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_above="@+id/btn_sure"
+            android:scrollbars="none">
 
-            <RelativeLayout style="@style/inputLayout">
-
-                <TextView
-                    android:id="@+id/tv_adress"
-                    style="@style/tvStyle01"
-                    android:text="@string/receiving_adress" />
-
-                <EditText
-                    android:id="@+id/et_adress"
-                    style="@style/etStyle01"
-                    android:layout_toRightOf="@+id/tv_adress"
-                    android:hint="@string/input_receiving_adress" />
-
-                <include
-                    style="@style/lineStyle01"
-                    layout="@layout/layout_line"></include>
-            </RelativeLayout>
-
-            <RelativeLayout style="@style/inputLayout">
-
-                <TextView
-                    android:id="@+id/tv_name"
-                    style="@style/tvStyle01"
-                    android:text="@string/name" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:orientation="vertical">
 
                 <EditText
                     android:id="@+id/et_name"
-                    style="@style/etStyle01"
-                    android:layout_toRightOf="@+id/tv_name"
+                    style="@style/inputStyle02"
+                    android:drawableLeft="@mipmap/icon_name"
                     android:hint="@string/input_name" />
 
                 <include
                     style="@style/lineStyle01"
                     layout="@layout/layout_line"></include>
-            </RelativeLayout>
-
-            <RelativeLayout style="@style/inputLayout">
 
                 <TextView
-                    android:id="@+id/tv_phone"
-                    style="@style/tvStyle01"
-                    android:text="@string/phone_num" />
-
-                <EditText
-                    android:id="@+id/et_phone"
-                    style="@style/etStyle01"
-                    android:layout_toRightOf="@+id/tv_phone"
-                    android:hint="@string/input_phone_num" />
+                    android:id="@+id/login_phone"
+                    style="@style/inputStyle02"
+                    android:gravity="center_vertical"
+                    android:drawableLeft="@mipmap/log_phone_login"
+                    android:hint="@string/input_phone_no"
+                    android:inputType="number" />
 
                 <include
                     style="@style/lineStyle01"
                     layout="@layout/layout_line"></include>
-            </RelativeLayout>
-
-            <RelativeLayout style="@style/inputLayout">
 
                 <TextView
-                    android:id="@+id/tv_open_bank"
-                    style="@style/tvStyle01"
-                    android:text="@string/opening_bank" />
-
-                <EditText
-                    android:id="@+id/et_open_bank"
-                    style="@style/etStyle01"
-                    android:layout_toRightOf="@+id/tv_open_bank"
-                    android:hint="@string/input_opening_bank" />
+                    android:id="@+id/tv_area"
+                    style="@style/inputStyle02"
+                    android:drawableLeft="@mipmap/icon_area"
+                    android:drawableRight="@mipmap/icon_next_gray"
+                    android:gravity="center_vertical"
+                    android:hint="@string/input_area"
+                    android:inputType="number" />
 
                 <include
                     style="@style/lineStyle01"
                     layout="@layout/layout_line"></include>
-            </RelativeLayout>
-
-            <RelativeLayout style="@style/inputLayout">
-
-                <TextView
-                    android:id="@+id/tv_account"
-                    style="@style/tvStyle01"
-                    android:text="@string/bank_number" />
 
                 <EditText
-                    android:id="@+id/et_account"
-                    style="@style/etStyle01"
-                    android:layout_toRightOf="@+id/tv_account"
-                    android:hint="@string/input_bank_number" />
+                    android:id="@+id/et_adress"
+                    style="@style/inputStyle02"
+                    android:drawableLeft="@mipmap/icon_area"
+                    android:hint="@string/input_adress" />
 
                 <include
                     style="@style/lineStyle01"
                     layout="@layout/layout_line"></include>
-            </RelativeLayout>
-
-            <RelativeLayout style="@style/inputLayout">
-
                 <TextView
-                    android:id="@+id/tv_wx_number"
-                    style="@style/tvStyle01"
-                    android:text="@string/weixin_number" />
-
-                <EditText
-                    android:id="@+id/et_wx_number"
-                    style="@style/etStyle01"
-                    android:layout_toRightOf="@+id/tv_wx_number"
-                    android:hint="@string/input_weixin_number" />
+                    style="@style/inputStyle02"
+                    android:gravity="center_vertical"
+                    android:textColorHint="@color/color_FF8a04"
+                    android:hint="@string/one_account" />
 
                 <include
                     style="@style/lineStyle01"
                     layout="@layout/layout_line"></include>
-            </RelativeLayout>
-
-            <RelativeLayout style="@style/inputLayout">
-
-                <TextView
-                    android:id="@+id/tv_et_zfb_number"
-                    style="@style/tvStyle01"
-                    android:text="@string/zfb_number" />
-
                 <EditText
-                    android:id="@+id/et_zfb_number"
-                    style="@style/etStyle01"
-                    android:layout_toRightOf="@+id/tv_et_zfb_number"
-                    android:hint="@string/input_zfb_number" />
+                android:id="@+id/et_open_bank"
+                style="@style/inputStyle02"
+                android:drawableLeft="@mipmap/icon_blank_num"
+                android:hint="@string/input_opening_bank" />
 
                 <include
-                    style="@style/lineStyle01"
-                    layout="@layout/layout_line"></include>
-            </RelativeLayout>
-
-            <RelativeLayout style="@style/inputLayout">
-
-                <TextView
-                    android:id="@+id/recommender_phone"
-                    style="@style/tvStyle01"
-                    android:text="@string/recommender_phone" />
+                style="@style/lineStyle01"
+                layout="@layout/layout_line"></include>
 
                 <EditText
-                    android:id="@+id/et_recommender_phone"
-                    style="@style/etStyle01"
-                    android:layout_toRightOf="@+id/recommender_phone"
-                    android:hint="@string/input_recommender_phone" />
+                android:id="@+id/et_account"
+                style="@style/inputStyle02"
+                android:drawableLeft="@mipmap/icon_blank"
+                android:hint="@string/input_bank_number" />
 
                 <include
+                style="@style/lineStyle01"
+                layout="@layout/layout_line"></include>
+
+                <EditText
+                android:id="@+id/et_wx_number"
+                style="@style/inputStyle02"
+                android:drawableLeft="@mipmap/icon_weixin_gray"
+                android:hint="@string/input_weixin_number" />
+
+                <include
+                style="@style/lineStyle01"
+                layout="@layout/layout_line"></include>
+
+                <EditText
+                android:id="@+id/et_zfb_number"
+                style="@style/inputStyle02"
+                android:drawableLeft="@mipmap/icon_zfb_gray"
+                android:hint="@string/input_zfb_number" />
+
+                <include
+                style="@style/lineStyle01"
+                layout="@layout/layout_line"></include>
+
+
+                <TextView
+                    android:id="@+id/invitation_phone"
+                    style="@style/inputStyle02"
+                    android:gravity="center_vertical"
+                    android:drawableLeft="@mipmap/log_phone_login"
+                    android:hint="@string/input_invitation_phone"
+                    android:inputType="number" />
+
+                <include
+                    android:id="@+id/line4"
                     style="@style/lineStyle01"
                     layout="@layout/layout_line"></include>
-            </RelativeLayout>
-        </LinearLayout>
-    </ScrollView>
+
+            </LinearLayout>
+        </ScrollView>
 
     <Button
         android:id="@+id/btn_sure"
         style="@style/btnStyle01"
-        android:layout_height="35dp"
+        android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="15dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:text="@string/sure" />
 </RelativeLayout>

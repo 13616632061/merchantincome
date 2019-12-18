@@ -36,5 +36,7 @@ public class ApiConstant {
     public static final String SURE_CASH = "seller/user/cash.html";
     //提现记录
     public static final String CASH_RECORD = "seller/user/cashlogs.html";
+    //修改商户资料
+    public static final String EDIT_INFO = "seller/user/editpass.html";
 
 }
