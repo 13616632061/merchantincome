@@ -1,71 +1,105 @@
 package yzx.com.merchantincome.ui.fragment.orderList.presenter;
 
+import com.library.base.mvp.BasePresenter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import yzx.com.merchantincome.api.SubscriberCallBack;
 import yzx.com.merchantincome.entity.OrderInfo;
-import yzx.com.merchantincome.ui.activity.order.presenter.IPresenterImp;
+import yzx.com.merchantincome.entity.ResultResponse;
 import yzx.com.merchantincome.ui.adapter.OrderListAdapter;
+import yzx.com.merchantincome.ui.fragment.orderList.contract.OrderListContract;
+import yzx.com.merchantincome.ui.fragment.orderList.model.OrderListModel;
 import yzx.com.merchantincome.ui.fragment.orderList.view.OrderListFragment;
 
 /**
- * Created by Administrator on 2019/12/6.
+ * Created by Administrator on 2019/12/30.
  */
 
-public class OrderListPresenter implements IPresenterImp {
-
+public class OrderListPresenter extends BasePresenter<OrderListFragment> implements OrderListContract.Presenter {
 
     private OrderListFragment mView;
+    private OrderListModel mModel;
 
+    private int mPage = 1;
+    private String tagID;
+    private List<OrderInfo.ResultBean.DataBean> mData = new ArrayList<>();
     private OrderListAdapter mAdapter;
-    private List<OrderInfo> mDada = new ArrayList<>();
 
     public OrderListPresenter(OrderListFragment mView) {
+        super(mView);
         this.mView = mView;
+        mModel = new OrderListModel();
+    }
+
+    public List<OrderInfo.ResultBean.DataBean> getmData() {
+        return mData;
+    }
+
+    public void setmData(List<OrderInfo.ResultBean.DataBean> mData) {
+        this.mData = mData;
     }
 
     /**
-     * 初始化适配器
+     * 分页页码
+     *
+     * @param page
      */
     @Override
-    public void setViewPagerData() {
-        mAdapter = mView.initOrderListAdapter();
-        OrderInfo orderInfo = new OrderInfo();
-        orderInfo.setOrderNum("15441134754");
-        orderInfo.setOrderStatus("1");
-        orderInfo.setName("张三");
-        orderInfo.setPhone("13129519607");
-        orderInfo.setAdress("广东省深圳市南山区深湾大道1103号");
-        orderInfo.setOrderTime("2019-12-06 09:10:18");
-        orderInfo.setOrderPrice("1688");
-
-        OrderInfo orderInfo2 = new OrderInfo();
-        orderInfo2.setOrderNum("15441134754");
-        orderInfo2.setOrderStatus("2");
-        orderInfo2.setName("小王");
-        orderInfo2.setPhone("13865702688");
-        orderInfo2.setAdress("北京市二环王府井王府社区小西胡同11号");
-        orderInfo2.setOrderTime("2019-12-06 15:57:16");
-        orderInfo2.setOrderPrice("1688");
-
-
-        String tagId = mView.getArguments().getString("tagID");
-        switch (tagId){
-            case "0":
-                mDada.add(orderInfo);
-                mDada.add(orderInfo2);
-                break;
-            case "1":
-                mDada.add(orderInfo);
-                break;
-            case "2":
-                mDada.add(orderInfo2);
-                break;
-        }
-        mAdapter.notifyDataSetChanged();
+    public void setPage(int page) {
+        this.mPage = page;
     }
 
-    public List<OrderInfo> getmDada() {
-        return mDada;
+    @Override
+    public int getPage() {
+        return mPage;
+    }
+
+    @Override
+    public void initOrderListAdapter() {
+        tagID = mView.getArguments().getString("tagID");
+        mAdapter = mView.initOrderListAdapter();
+    }
+
+    /**
+     * 获取订单信息
+     */
+    @Override
+    public void getOrderInfo() {
+        int[] status = new int[0];
+        switch (tagID) {
+            case "0":
+                status = new int[]{};
+                break;
+            case "1":
+                status = new int[]{0, 1};
+                break;
+            case "2":
+                status = new int[]{2, 3};
+                break;
+        }
+        addSubscription(mModel.getOrderInfo(mPage, status), new SubscriberCallBack<OrderInfo>() {
+            @Override
+            protected void onSuccess(OrderInfo response) {
+                if (mPage == 1) {
+                    mData.clear();
+                }
+                mView.setRefreshing(false);
+                mData.addAll(response.getResult().getData());
+                mAdapter.notifyDataSetChanged();
+                if (mPage < mView.getPageRowNumber(response.getResult().getTotal())) {
+                    mAdapter.loadMoreComplete();
+                } else {
+                    mAdapter.loadMoreEnd();
+                }
+            }
+
+            @Override
+            protected void onError() {
+                mView.setRefreshing(false);
+            }
+
+        });
     }
 }

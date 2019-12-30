@@ -71,8 +71,8 @@ public class MerchantInfoActivity extends BaseActivity implements IMerchantInfoV
     @OnClick({R.id.tv_area, R.id.btn_sure})
     public void setOnClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_area://所在地区
-                mPresenter.toGoProvncePage();
+            case R.id.tv_area://选择地址
+                mPresenter.toGoSelectAdress();
                 break;
             case R.id.btn_sure://确定
                 mPresenter.editInfo();
@@ -84,8 +84,8 @@ public class MerchantInfoActivity extends BaseActivity implements IMerchantInfoV
      * 去省份页面
      */
     @Override
-    public void toGoProvncePage() {
-        routerNavigation(RouterMapping.ROUTER_ACTIVITY_PROVINCE);
+    public void toGoSelectAdress() {
+        routerNavigation(RouterMapping.ROUTER_ACTIVITY_ADRESS_LIST);
     }
 
     /**
@@ -226,6 +226,9 @@ public class MerchantInfoActivity extends BaseActivity implements IMerchantInfoV
         switch (type) {
             case 1:
                 ToastUtils.showShort(getResources().getString(R.string.empty_account));
+                break;
+            case 2://修改成功
+                ToastUtils.showShort(getResources().getString(R.string.edit_sucess));
                 break;
         }
     }

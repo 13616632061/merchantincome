@@ -23,6 +23,7 @@
                 android:hint="@string/input_name" />
 
             <include
+                android:id="@+id/line01"
                 style="@style/lineStyle01"
                 layout="@layout/layout_line"></include>
 
@@ -34,10 +35,12 @@
                 android:inputType="number" />
 
             <include
+                android:id="@+id/line02"
                 style="@style/lineStyle01"
                 layout="@layout/layout_line"></include>
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tv_area"
                 style="@style/inputStyle02"
                 android:drawableLeft="@mipmap/icon_area"
@@ -47,16 +50,21 @@
                 android:inputType="number" />
 
             <include
+                android:visibility="gone"
+                android:id="@+id/line03"
                 style="@style/lineStyle01"
                 layout="@layout/layout_line"></include>
 
             <EditText
+                android:visibility="gone"
                 android:id="@+id/et_adress"
                 style="@style/inputStyle02"
                 android:drawableLeft="@mipmap/icon_area"
                 android:hint="@string/input_adress" />
 
             <include
+                android:visibility="gone"
+                android:id="@+id/line04"
                 style="@style/lineStyle01"
                 layout="@layout/layout_line"></include>
 

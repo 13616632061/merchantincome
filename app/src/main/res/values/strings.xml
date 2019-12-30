@@ -18,6 +18,7 @@
     <string name="shopper_info">商户资料</string>
     <string name="withdrawals_record">提现记录</string>
     <string name="shoper_name">商户姓名</string>
+    <string name="score">积分</string>
     <string name="shoper_phone">商户手机</string>
     <string name="dispatch_profit">批发收益</string>
     <string name="retail_profit">零售收益</string>
@@ -73,6 +74,7 @@
     <string name="phone_explain">手机应用说明</string>
     <string name="outLogin">退出登录</string>
     <string name="service">服务中心</string>
+    <string name="leav_msg">留言咨询</string>
     <string name="income_rule">收益规则</string>
     <string name="my_income">我的收益</string>
     <string name="input_cash_num">请输入提现金额</string>
@@ -83,5 +85,14 @@
     <string name="not_pass">未通过</string>
     <string name="cash">提现</string>
     <string name="type">类型</string>
+    <string name="edit_sucess">修改成功</string>
+    <string name="want_to_leave_a_message">我要留言咨询</string>
+    <string name="register_success">注册成功</string>
+    <string name="select_adress">选择地址</string>
+    <string name="add">添加</string>
+    <string name="add_adress">添加地址</string>
+    <string name="edit_adress">编辑地址</string>
+    <string name="delete_adress">删除地址</string>
+    <string name="save">保存</string>
 
 </resources>

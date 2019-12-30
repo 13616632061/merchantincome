@@ -1,9 +1,12 @@
 package yzx.com.merchantincome.ui.activity.mainActivity.presenter;
 
 import android.text.TextUtils;
+import android.util.Log;
 
+import com.apkfuns.logutils.LogUtils;
 import com.google.gson.Gson;
 import com.library.base.mvp.BasePresenter;
+import com.library.utils.AESUtils;
 import com.library.utils.SPUtils;
 
 import java.util.ArrayList;
@@ -61,7 +64,10 @@ public class MainPresenter extends BasePresenter<MainActivity> implements IPrese
             @Override
             protected void onSuccess(UserInfo response) {
                 mView.setRefreshing(false);
+                LoginUserUtil.getInstance().setLoginUser(response);
+
                 mView.setName(response.getResult().getName());
+                mView.setScore(response.getResult().getScore());
                 mView.setPhone(response.getResult().getMobile());
                 mView.setDispatchProfit(response.getResult().getWle_income());
                 mView.setRetailProfit(response.getResult().getRetail_income());
@@ -120,14 +126,14 @@ public class MainPresenter extends BasePresenter<MainActivity> implements IPrese
             mView.showMsg(2);
             return;
         }
-        if (TextUtils.isEmpty(mView.getPwd())) {
-            mView.showMsg(3);
-            return;
-        }
-        if (!mView.getPwd().equals(LoginUserUtil.getInstance().getLoginUser().getResult().getPass())){
-            mView.showMsg(4);
-            return;
-        }
+//        if (TextUtils.isEmpty(mView.getPwd())) {
+//            mView.showMsg(3);
+//            return;
+//        }
+//        if (!mView.getPwd().equals(AESUtils.Decrypt(LoginUserUtil.getInstance().getLoginUser().getResult().getPass()))){
+//            mView.showMsg(4);
+//            return;
+//        }
         addSubscription(mModel.sureCash(dispatchProfitNum, retailProfitNum), new SubscriberCallBack<ResultResponse>() {
             @Override
             protected void onSuccess(ResultResponse response) {

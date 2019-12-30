@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="yzx.com.merchantincome.ui.activity.serviceCentre.view.ServiceCentreActivity">
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/layout_title_bar"></include>
+
+    <TextView
+        android:id="@+id/tv_service"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_msg"
+        android:layout_below="@+id/title_bar"
+        android:layout_marginBottom="15dp" />
+
+    <Button
+        android:id="@+id/btn_msg"
+        style="@style/btnStyle01"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:text="@string/want_to_leave_a_message" />
+</RelativeLayout>

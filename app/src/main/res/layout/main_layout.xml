@@ -60,6 +60,26 @@
 
                     <TextView
                         style="@style/tvStyle01"
+                        android:text="@string/score" />
+
+                    <TextView
+                        android:id="@+id/tv_score"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/blackText"
+                        android:textSize="14sp" />
+
+                    <include
+                        style="@style/lineStyle01"
+                        layout="@layout/layout_line"></include>
+                </RelativeLayout>
+
+                <RelativeLayout style="@style/inputLayout">
+
+                    <TextView
+                        style="@style/tvStyle01"
                         android:text="@string/shoper_phone" />
 
                     <TextView
@@ -158,7 +178,9 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout style="@style/inputLayout">
+                <RelativeLayout
+                    style="@style/inputLayout"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/tv_pwd"

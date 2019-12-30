@@ -9,7 +9,7 @@ import rx.Observable;
 public interface IRegisterModelImp {
 
     //注册
-    Observable toRegisterInfo(String name,String mobile,int province,int city,int district,int town,String address,String pass,
+    Observable toRegisterInfo(String name,String mobile,String pass,
                               String confirm_pass,String re_mobile,String code);
 
     //短信验证码

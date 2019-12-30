@@ -241,6 +241,9 @@ public class RegisterActivity extends BaseActivity implements IRegisterViewImp {
             case 12://邀请人手机号码不正确
                 ToastUtils.showShort(getResources().getString(R.string.error_recommender_phone));
                 break;
+            case 13://注册成功
+                ToastUtils.showShort(getResources().getString(R.string.register_success));
+                break;
         }
     }
 

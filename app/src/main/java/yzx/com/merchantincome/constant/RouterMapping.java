@@ -35,9 +35,15 @@ public class RouterMapping {
     //收益规则
     public static final String ROUTER_ACTIVITY_INCOME_RULE = "/app/IncomeRuleActivity";
     //服务中心
-    public static final String ROUTER_ACTIVITY_SERVER = "/app/ServiceCenterActivity";
+    public static final String ROUTER_ACTIVITY_LEAVING_MESSAGE = "/app/LeavingMessageActivity";
     //提现结果
     public static final String ROUTER_ACTIVITY_CASH_RESULT = "/app/CashSuccessActivity";
+    //服务中心
+    public static final String ROUTER_ACTIVITY_SERVICE_CENTRE = "/app/ServiceCentreActivity";
+    //选择地址
+    public static final String ROUTER_ACTIVITY_ADRESS_LIST = "/app/AdressListActivity";
+    //添加，编辑地址
+    public static final String ROUTER_ACTIVITY_ADRESS_ADD_EDIT = "/app/AddAndEditAdressActivity";
 
     //toutiao 组建
     //new

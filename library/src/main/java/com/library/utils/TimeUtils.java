@@ -115,4 +115,13 @@ public class TimeUtils {
             retStr = "" + i;
         return retStr;
     }
+
+    /**
+     * 获取10位的时间搓
+     *
+     * @return
+     */
+    public static Long getTime10() {
+        return System.currentTimeMillis() / 1000;
+    }
 }

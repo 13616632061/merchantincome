@@ -59,6 +59,15 @@ public class UserInfo extends ResultResponse {
         private int createtime;
         private int last_login_time;
         private String refresh_token;
+        private int score;
+
+        public int getScore() {
+            return score;
+        }
+
+        public void setScore(int score) {
+            this.score = score;
+        }
 
         public int getId() {
             return id;

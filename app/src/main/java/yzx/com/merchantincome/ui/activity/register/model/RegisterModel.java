@@ -24,9 +24,9 @@ public class RegisterModel implements IRegisterModelImp {
      * @return
      */
     @Override
-    public Observable toRegisterInfo(String name,String mobile,int province,int city,int district,int town,String address,String pass,
+    public Observable toRegisterInfo(String name,String mobile,String pass,
                                      String confirm_pass,String re_mobile,String code) {
-        return ApiRetrofit.getInstance().getApiService().toRegisterInfo(name,mobile,province,city,district,town,address,pass,
+        return ApiRetrofit.getInstance().getApiService().toRegisterInfo(name,mobile,pass,
                 confirm_pass,re_mobile, code);
     }
 

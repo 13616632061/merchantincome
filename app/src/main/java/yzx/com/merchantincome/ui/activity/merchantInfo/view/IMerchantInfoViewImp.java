@@ -7,7 +7,7 @@ package yzx.com.merchantincome.ui.activity.merchantInfo.view;
 public interface IMerchantInfoViewImp {
 
     //去省份页面
-    void toGoProvncePage();
+    void toGoSelectAdress();
 
     //名字
     void setName(String name);

@@ -73,8 +73,11 @@
         <activity android:name=".ui.activity.adress.town.view.TownActivity" />
         <activity android:name=".ui.activity.cashRecord.view.CashRecordActivity" />
         <activity android:name=".ui.activity.incomeRule.view.IncomeRuleActivity" />
-        <activity android:name=".ui.activity.serviceCenter.view.ServiceCenterActivity" />
-        <activity android:name=".ui.activity.cashSuccess.CashSuccessActivity"></activity>
+        <activity android:name=".ui.activity.LeavingMessage.view.LeavingMessageActivity" />
+        <activity android:name=".ui.activity.cashSuccess.CashSuccessActivity" />
+        <activity android:name=".ui.activity.serviceCentre.view.ServiceCentreActivity" />
+        <activity android:name=".ui.activity.adress.adressList.AdressListActivity" />
+        <activity android:name=".ui.activity.adress.addAndEditAdress.AddAndEditAdressActivity"></activity>
     </application>
 
 </manifest>

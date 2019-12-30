@@ -8,7 +8,8 @@ public class ApiConstant {
     /**
      * 接口根地址(域名)
      */
-    public static final String BASE_SERVER_URL = "http://swoole.czxshop.com/";
+//    public static final String BASE_SERVER_URL = "http://swoole.czxshop.com/";//（正式）
+    public static final String BASE_SERVER_URL = "http://bbs.czxshop.com/";//(测试)
 
     /**
      * 接口api
@@ -38,5 +39,15 @@ public class ApiConstant {
     public static final String CASH_RECORD = "seller/user/cashlogs.html";
     //修改商户资料
     public static final String EDIT_INFO = "seller/user/editpass.html";
+    //收益规则
+    public static final String INCOME_RULE = "seller/banner/incomerule.html";
+    //服务中心
+    public static final String SERVICE_CENTER = "seller/banner/servicecenter.html";
+    //我的订单
+    public static final String ORDER = "seller/user/order.html";
+    //地址列表
+    public static final String ADRESS_LIST = "seller/user/addresslist.html";
+    //添加，编辑地址
+    public static final String ADRESS_ADD_EDIT = "seller/user/editAddress";
 
 }

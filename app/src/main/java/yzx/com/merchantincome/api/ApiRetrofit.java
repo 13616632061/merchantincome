@@ -9,11 +9,14 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.library.app.LibAplication;
+import com.library.utils.AESUtils;
 import com.library.utils.SPUtils;
 import com.library.utils.TimeUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -45,6 +48,7 @@ public class ApiRetrofit {
     private final Retrofit mRetrofit;
     private OkHttpClient mClient;
     private ApiService mApiService;
+    private String noncestr;
 
 
     //缓存配置
@@ -90,6 +94,10 @@ public class ApiRetrofit {
         String content = response.body().string();
         LogUtils.e("----------Request Start----------------");
         LogUtils.e("| " + request.toString());
+        LogUtils.e("----------Request headers----------------");
+        LogUtils.e("| " + request.headers().toString());
+        LogUtils.e("| Response:" + response);
+        LogUtils.e("----------Request End:" + duration + "毫秒----------");
         LogUtils.e("| Response:" + content);
         if (LoginUserUtil.getInstance().getLoginUser() != null) {
             LogUtils.e("| 旧Token:" + LoginUserUtil.getInstance().getLoginUser().getResult().getToken());
@@ -98,15 +106,17 @@ public class ApiRetrofit {
         if (overDueToken(content)) {
             String newToken = getNewToken();
             Request newRequest = chain.request().newBuilder()
+                    .addHeader("sign", getSign())
                     .addHeader("token", newToken)
+                    .addHeader("noncestr", noncestr)
+                    .addHeader("timestamp", TimeUtils.getTime10() + "")
                     .build();
             return chain.proceed(newRequest);
+        } else {
+            return response.newBuilder()
+                    .body(okhttp3.ResponseBody.create(mediaType, content))
+                    .build();
         }
-        LogUtils.e("| Response:" + response);
-        LogUtils.e("----------Request End:" + duration + "毫秒----------");
-        return response.newBuilder()
-                .body(okhttp3.ResponseBody.create(mediaType, content))
-                .build();
     };
 
     /**
@@ -132,11 +142,14 @@ public class ApiRetrofit {
      */
     private Interceptor mHeaderInterceptor = chain -> {
         Request.Builder builder = chain.request().newBuilder();
-        builder.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.108 Safari/537.36 2345Explorer/8.0.0.13547");
-        builder.addHeader("Cache-Control", "max-age=0");
-        builder.addHeader("Upgrade-Insecure-Requests", "1");
-        builder.addHeader("X-Requested-With", "XMLHttpRequest");
-        builder.addHeader("Cookie", "uuid=\"w:f2e0e469165542f8a3960f67cb354026\"; __tasessionId=4p6q77g6q1479458262778; csrftoken=7de2dd812d513441f85cf8272f015ce5; tt_webid=36385357187");
+//        builder.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.108 Safari/537.36 2345Explorer/8.0.0.13547");
+//        builder.addHeader("Cache-Control", "max-age=0");
+//        builder.addHeader("Upgrade-Insecure-Requests", "1");
+//        builder.addHeader("X-Requested-With", "XMLHttpRequest");
+//        builder.addHeader("Cookie", "uuid=\"w:f2e0e469165542f8a3960f67cb354026\"; __tasessionId=4p6q77g6q1479458262778; csrftoken=7de2dd812d513441f85cf8272f015ce5; tt_webid=36385357187");
+        builder.addHeader("sign", getSign());
+        builder.addHeader("noncestr", noncestr);
+        builder.addHeader("timestamp", TimeUtils.getTime10() + "");
         if (LoginUserUtil.getInstance().getLoginUser() != null) {
             builder.addHeader("token", LoginUserUtil.getInstance().getLoginUser().getResult().getToken());
         }
@@ -219,7 +232,7 @@ public class ApiRetrofit {
                         public void onNext(RefreshTokenRespone respone) {
                             newToken[0] = respone.getToken();
                             LogUtils.e("| newToken:" + newToken[0]);
-                            if (!TextUtils.isEmpty(newToken[0])){
+                            if (!TextUtils.isEmpty(newToken[0])) {
                                 userInfo.getResult().setToken(newToken[0]);
                                 LoginUserUtil.getInstance().setLoginUser(userInfo);
                             }
@@ -233,4 +246,24 @@ public class ApiRetrofit {
         }
         return newToken[0];
     }
+
+    /**
+     * 生成sign
+     *
+     * @return
+     */
+    public String getSign() {
+        noncestr = com.library.utils.TextUtils.getRandomString(16);
+        long timestamp = TimeUtils.getTime10();
+        String token = "";
+        if (LoginUserUtil.getInstance().getLoginUser() != null) {
+            token = LoginUserUtil.getInstance().getLoginUser().getResult().getToken();
+        }
+        String signStr = "noncestr=" + noncestr + "&timestamp=" + timestamp + "&token=" + token;
+        LogUtils.e("| signStr:" + signStr);
+        String sign = AESUtils.Encrypt(signStr);
+        LogUtils.e("| sign:" + sign);
+        return sign;
+    }
+
 }

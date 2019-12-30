@@ -79,6 +79,8 @@ public class MainActivity extends BaseActivity implements IMainViewImp, SwipeRef
     LinearLayout leftLayout;
     @BindView(R.id.refresh)
     SwipeRefreshLayout refresh;
+    @BindView(R.id.tv_score)
+    TextView tvScore;
 
     private MainPresenter mPresenter;
 
@@ -168,7 +170,7 @@ public class MainActivity extends BaseActivity implements IMainViewImp, SwipeRef
      */
     @Override
     public void toGoServerCenter() {
-        routerNavigation(RouterMapping.ROUTER_ACTIVITY_SERVER);
+        routerNavigation(RouterMapping.ROUTER_ACTIVITY_SERVICE_CENTRE);
 
     }
 
@@ -226,6 +228,16 @@ public class MainActivity extends BaseActivity implements IMainViewImp, SwipeRef
     @Override
     public void setName(String name) {
         tvName.setText(name);
+    }
+
+    /**
+     * 积分
+     *
+     * @param score
+     */
+    @Override
+    public void setScore(int score) {
+        tvScore.setText(score+"");
     }
 
     /**
@@ -326,6 +338,7 @@ public class MainActivity extends BaseActivity implements IMainViewImp, SwipeRef
 
     /**
      * 设置刷新状态
+     *
      * @param refreshing
      */
     @Override
@@ -339,5 +352,12 @@ public class MainActivity extends BaseActivity implements IMainViewImp, SwipeRef
     @Override
     public void onRefresh() {
         mPresenter.getUserInfo();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

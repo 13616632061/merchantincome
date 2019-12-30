@@ -12,7 +12,7 @@ public interface IMerchantInfoPresenterImp {
     void initData();
 
     //去省份页面
-    void toGoProvncePage();
+    void toGoSelectAdress();
 
     //所在地区
     void setArea(ProvinceResponse.ResultBean province, ProvinceResponse.ResultBean city, ProvinceResponse.ResultBean county, ProvinceResponse.ResultBean town);

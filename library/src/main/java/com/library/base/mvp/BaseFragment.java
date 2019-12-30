@@ -97,4 +97,19 @@ public abstract class BaseFragment<T extends BasePresenter> extends LazyLoadFrag
         super.onDestroy();
         rootView = null;
     }
+
+    /**
+     * 获取分页数
+     * @param PageRowNumber
+     * @return
+     */
+    public int getPageRowNumber(int PageRowNumber){
+        int rowNumber=0;
+        int num=10;
+        rowNumber=PageRowNumber/num;
+        if(PageRowNumber%num>0){
+            rowNumber++;
+        }
+        return rowNumber;
+    }
 }

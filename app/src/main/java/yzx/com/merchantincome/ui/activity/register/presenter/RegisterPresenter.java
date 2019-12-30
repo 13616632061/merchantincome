@@ -96,14 +96,14 @@ public class RegisterPresenter extends BasePresenter<RegisterActivity> implement
             mView.showToastMsg(11);
             return;
         }
-        if (TextUtils.isEmpty(mView.getArea())) {
-            mView.showToastMsg(3);
-            return;
-        }
-        if (TextUtils.isEmpty(mView.getDetailAdress())) {
-            mView.showToastMsg(4);
-            return;
-        }
+//        if (TextUtils.isEmpty(mView.getArea())) {
+//            mView.showToastMsg(3);
+//            return;
+//        }
+//        if (TextUtils.isEmpty(mView.getDetailAdress())) {
+//            mView.showToastMsg(4);
+//            return;
+//        }
 //        if ((TextUtils.isEmpty(mView.getOpenBank()) && TextUtils.isEmpty(mView.getBankNum())) ||
 //                TextUtils.isEmpty(mView.getWXAccount()) || TextUtils.isEmpty(mView.getZfbAccount())) {
 //            mView.showToastMsg(5);
@@ -133,11 +133,11 @@ public class RegisterPresenter extends BasePresenter<RegisterActivity> implement
             mView.showToastMsg(10);
             return;
         }
-        Observable observable=mModel.toRegisterInfo(mView.getName(),mView.getPhone(),mProvince.getId(),mCity.getId(),mCounty.getId(),mTown.getId(),
-                mView.getDetailAdress(),mView.getPwd(),mView.getSurePwd(),mView.getInvitationPhone(),mView.getSmsCode());
+        Observable observable=mModel.toRegisterInfo(mView.getName(),mView.getPhone(),mView.getPwd(),mView.getSurePwd(),mView.getInvitationPhone(),mView.getSmsCode());
         addSubscription(observable, new SubscriberCallBack<ResultResponse>() {
             @Override
             protected void onSuccess(ResultResponse response) {
+                mView.showToastMsg(13);
                 mView.finish();
             }
 

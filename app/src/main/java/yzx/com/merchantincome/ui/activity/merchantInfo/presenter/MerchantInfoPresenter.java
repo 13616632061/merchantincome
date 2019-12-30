@@ -38,21 +38,24 @@ public class MerchantInfoPresenter extends BasePresenter<MerchantInfoActivity> i
     @Override
     public void initData() {
         UserInfo userInfo = LoginUserUtil.getInstance().getLoginUser();
-        mView.setName(userInfo.getResult().getName());
-        mView.setPhone(userInfo.getResult().getMobile());
-        mView.setBankInfo(userInfo.getResult().getBank());
-        mView.setBankNum(userInfo.getResult().getAccount());
-        mView.setWxNum(userInfo.getResult().getVx());
-        mView.setZfbNum(userInfo.getResult().getAlipay());
-        mView.setInvitationPhone(userInfo.getResult().getRe_mobile());
+        if (userInfo!=null){
+            mView.setName(userInfo.getResult().getName());
+            mView.setPhone(userInfo.getResult().getMobile());
+            mView.setBankInfo(userInfo.getResult().getBank());
+            mView.setBankNum(userInfo.getResult().getAccount());
+            mView.setWxNum(userInfo.getResult().getVx());
+            mView.setZfbNum(userInfo.getResult().getAlipay());
+            mView.setInvitationPhone(userInfo.getResult().getRe_mobile());
+        }
+
     }
 
     /**
      * 去省份页面
      */
     @Override
-    public void toGoProvncePage() {
-        mView.toGoProvncePage();
+    public void toGoSelectAdress() {
+        mView.toGoSelectAdress();
     }
 
     /**
@@ -90,7 +93,8 @@ public class MerchantInfoPresenter extends BasePresenter<MerchantInfoActivity> i
         addSubscription(mModel.editInfo(bankInfo,bankNum,wxNum,zfbNum), new SubscriberCallBack<ResultResponse>() {
             @Override
             protected void onSuccess(ResultResponse response) {
-
+                mView.showToastMsg(2);
+                    mView.finish();
             }
 
             @Override

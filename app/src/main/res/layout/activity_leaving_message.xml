@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/color_cccccc"
     android:orientation="vertical"
-    tools:context="yzx.com.merchantincome.ui.activity.serviceCenter.view.ServiceCenterActivity">
+    tools:context="yzx.com.merchantincome.ui.activity.LeavingMessage.view.LeavingMessageActivity">
 
     <include
         android:id="@+id/title_bar"

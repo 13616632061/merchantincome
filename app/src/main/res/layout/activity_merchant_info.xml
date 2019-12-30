@@ -54,14 +54,16 @@
                     android:drawableLeft="@mipmap/icon_area"
                     android:drawableRight="@mipmap/icon_next_gray"
                     android:gravity="center_vertical"
-                    android:hint="@string/input_area"
+                    android:hint="@string/select_adress"
                     android:inputType="number" />
 
                 <include
+                    android:visibility="gone"
                     style="@style/lineStyle01"
                     layout="@layout/layout_line"></include>
 
                 <EditText
+                    android:visibility="gone"
                     android:id="@+id/et_adress"
                     style="@style/inputStyle02"
                     android:drawableLeft="@mipmap/icon_area"

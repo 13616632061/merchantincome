@@ -1,15 +1,16 @@
 package yzx.com.merchantincome.ui.activity.editPwd;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.library.base.mvp.BaseActivity;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import yzx.com.merchantincome.R;
 import yzx.com.merchantincome.constant.RouterMapping;
@@ -34,6 +35,14 @@ public class EditPwdActivity extends BaseActivity {
     Button btnRegiste;
     @BindView(R.id.line4)
     View line4;
+    @BindView(R.id.line01)
+    View line01;
+    @BindView(R.id.line02)
+    View line02;
+    @BindView(R.id.line03)
+    View line03;
+    @BindView(R.id.et_name)
+    EditText etName;
 
     @Override
     public int getContentView() {
@@ -45,7 +54,12 @@ public class EditPwdActivity extends BaseActivity {
         initTitle(getResources().getString(R.string.edit_pwd), false, "");
         btnRegiste.setText(getResources().getString(R.string.sure));
         invitationPhone.setVisibility(View.GONE);
+        loginPhone.setVisibility(View.GONE);
+        etName.setVisibility(View.GONE);
         line4.setVisibility(View.GONE);
+        line01.setVisibility(View.GONE);
+        line02.setVisibility(View.GONE);
+        line03.setVisibility(View.GONE);
 
     }
 
@@ -58,4 +72,10 @@ public class EditPwdActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

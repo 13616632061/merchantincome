@@ -36,6 +36,9 @@ public interface IMainViewImp {
     //商户姓名
     void setName(String name);
 
+    //积分
+    void setScore(int score);
+
     //商户手机
     void setPhone(String phone);
 

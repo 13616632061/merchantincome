@@ -13,6 +13,8 @@ import retrofit2.http.Field;
 import rx.Observable;
 import yzx.com.merchantincome.entity.BannerResponse;
 import yzx.com.merchantincome.entity.CashRecordResponse;
+import yzx.com.merchantincome.entity.InComeRuleRespone;
+import yzx.com.merchantincome.entity.OrderInfo;
 import yzx.com.merchantincome.entity.ProvinceResponse;
 import yzx.com.merchantincome.entity.RefreshTokenRespone;
 import yzx.com.merchantincome.entity.ResultResponse;
@@ -51,8 +53,7 @@ public interface ApiService {
      */
     @POST(ApiConstant.REGISTER)
     @FormUrlEncoded
-    Observable<ResultResponse> toRegisterInfo(@Field("name") String name, @Field("mobile") String mobile, @Field("province") int province,
-                                              @Field("city") int city, @Field("district") int district, @Field("town") int town, @Field("address") String address,
+    Observable<ResultResponse> toRegisterInfo(@Field("name") String name, @Field("mobile") String mobile,
                                               @Field("pass") String pass, @Field("confirm_pass") String confirm_pass, @Field("re_mobile") String re_mobile,
                                               @Field("code") String code);
 
@@ -133,12 +134,56 @@ public interface ApiService {
                                         @Field("alipay") String alipay);
 
     /**
-     * 商户资料
+     * 提现记录
      *
      * @return
      */
     @POST(ApiConstant.CASH_RECORD)
     @FormUrlEncoded
     Observable<CashRecordResponse> getCashRecord(@Field("page") int page);
+
+    /**
+     * 订单信息
+     *
+     * @return
+     */
+    @POST(ApiConstant.ORDER)
+    @FormUrlEncoded
+    Observable<OrderInfo> getOrderInfo(@Field("page") int page,@Field("status") int[] status);
+
+    /**
+     * 收益规则
+     *
+     * @return
+     */
+    @GET(ApiConstant.INCOME_RULE)
+    Observable<InComeRuleRespone> incomeRule();
+
+    /**
+     * 收益规则
+     *
+     * @return
+     */
+    @GET(ApiConstant.SERVICE_CENTER)
+    Observable<InComeRuleRespone> serviceCenter();
+
+    /**
+     * 地址列表
+     *
+     * @return
+     */
+    @POST(ApiConstant.ADRESS_LIST)
+    Observable<ResultResponse> adressList();
+
+    /**
+     * 添加，编辑地址
+     *
+     * @return
+     */
+    @POST(ApiConstant.ADRESS_ADD_EDIT)
+    @FormUrlEncoded
+    Observable<ResultResponse> saveAdress(@Field("consignee") String consignee, @Field("mobile") String mobile, @Field("province") String province,
+                                          @Field("city") String city, @Field("district") String district, @Field("address") String address, @Field("address") String town,
+                                          @Field("is_default") String is_default, @Field("address_id") String address_id);
 
 }
