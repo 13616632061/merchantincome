@@ -105,6 +105,7 @@ public class ApiRetrofit {
         LogUtils.e("| Token是否过期:" + overDueToken(content));
         if (overDueToken(content)) {
             String newToken = getNewToken();
+            LogUtils.e("| newToken: " + newToken);
             Request newRequest = chain.request().newBuilder()
                     .addHeader("sign", getSign())
                     .addHeader("token", newToken)

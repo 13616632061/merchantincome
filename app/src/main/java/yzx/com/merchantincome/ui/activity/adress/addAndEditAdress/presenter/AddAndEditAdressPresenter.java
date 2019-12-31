@@ -1,9 +1,15 @@
 package yzx.com.merchantincome.ui.activity.adress.addAndEditAdress.presenter;
 
+import android.text.TextUtils;
+
 import com.library.base.mvp.BasePresenter;
+import com.library.utils.EventBusMapUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 import rx.Observable;
 import yzx.com.merchantincome.api.SubscriberCallBack;
+import yzx.com.merchantincome.entity.AdressListResponse;
 import yzx.com.merchantincome.entity.ProvinceResponse;
 import yzx.com.merchantincome.entity.ResultResponse;
 import yzx.com.merchantincome.ui.activity.adress.addAndEditAdress.AddAndEditAdressActivity;
@@ -25,11 +31,30 @@ public class AddAndEditAdressPresenter extends BasePresenter<AddAndEditAdressAct
     private ProvinceResponse.ResultBean mCounty;
     private ProvinceResponse.ResultBean mTown;
 
+    private int isDefault;//是否默认地址
+
     public AddAndEditAdressPresenter(AddAndEditAdressActivity mView) {
         super(mView);
         this.mView = mView;
 
         mModel = new AddAndEditAdressModel();
+        mView.isDefault();
+    }
+
+    /**
+     * 初始化地址
+     */
+    @Override
+    public void initAdress(AdressListResponse.ResultBean.ListsBean adress) {
+        mView.setName(adress.getConsignee());
+        mView.setPhone(adress.getMobile());
+        mView.setArea(adress.getArea(), "", "", "");
+        mView.setAdress(adress.getAddress());
+        mProvince = new ProvinceResponse.ResultBean(adress.getProvince());
+        mCity = new ProvinceResponse.ResultBean(adress.getCity());
+        mCounty = new ProvinceResponse.ResultBean(adress.getDistrict());
+        mTown = new ProvinceResponse.ResultBean(adress.getTwon());
+        isDefault = adress.getIs_default();
     }
 
     /**
@@ -37,19 +62,33 @@ public class AddAndEditAdressPresenter extends BasePresenter<AddAndEditAdressAct
      */
     @Override
     public void saveAdress(String addressId) {
-        String name=mView.getName();
-        String phone=mView.getPhone();
-        String area=mView.getArea();
-        String adress=mView.getAdress();
-        int isDefault=0;
-        if (mView.isDefault()){
-            isDefault=1;
+        String name = mView.getName();
+        String phone = mView.getPhone();
+        String area = mView.getArea();
+        String adress = mView.getAdress();
+        if (TextUtils.isEmpty(name)) {
+            mView.showMsg(2);
+            return;
         }
-
-        Observable params=mModel.saveAdress(name,phone,mProvince.getId()+"",mCity.getId()+"",mCounty.getId()+"",mTown.getId()+"",adress,isDefault+"",addressId);
+        if (TextUtils.isEmpty(phone)) {
+            mView.showMsg(3);
+            return;
+        }
+        if (TextUtils.isEmpty(area)) {
+            mView.showMsg(4);
+            return;
+        }
+        if (TextUtils.isEmpty(adress)) {
+            mView.showMsg(5);
+            return;
+        }
+        Observable params = mModel.saveAdress(name, phone, mProvince.getId() + "", mCity.getId() + "", mCounty.getId() + "", mTown.getId() + "", adress, isDefault + "", addressId);
         addSubscription(params, new SubscriberCallBack<ResultResponse>() {
             @Override
             protected void onSuccess(ResultResponse response) {
+                mView.showMsg(1);
+                EventBus.getDefault().post(EventBusMapUtil.getObjectMap("refeshAdress", 200));
+                mView.finish();
 
             }
 
@@ -70,6 +109,7 @@ public class AddAndEditAdressPresenter extends BasePresenter<AddAndEditAdressAct
 
     /**
      * 所在地区
+     *
      * @param province
      * @param city
      * @param county
@@ -83,6 +123,44 @@ public class AddAndEditAdressPresenter extends BasePresenter<AddAndEditAdressAct
         mTown = town;
 
         mView.setArea(province.getName(), city.getName(), county.getName(), town.getName());
+    }
+
+    /**
+     * 删除地址
+     *
+     * @param addressID
+     */
+    @Override
+    public void deleteAdress(int addressID) {
+        addSubscription(mModel.deleteAdress(addressID), new SubscriberCallBack<ResultResponse>() {
+            @Override
+            protected void onSuccess(ResultResponse response) {
+                mView.showMsg(1);
+                EventBus.getDefault().post(EventBusMapUtil.getObjectMap("refeshAdress", 200));
+                mView.finish();
+            }
+
+            @Override
+            protected void onError() {
+
+            }
+
+        });
+    }
+
+    /**
+     * 显示删除地址dialog
+     *
+     * @param addressID
+     */
+    @Override
+    public void showDeleteDialog(int addressID) {
+        mView.deleteAdress(addressID);
+    }
+
+    @Override
+    public void setDefaultAdress(int defaultAdress) {
+        isDefault = defaultAdress;
     }
 
 }

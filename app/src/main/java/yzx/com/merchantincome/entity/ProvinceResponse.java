@@ -56,6 +56,10 @@ public class ProvinceResponse extends ResultResponse implements Parcelable{
         private int id;
         private String name;
 
+        public ResultBean(int id) {
+            this.id = id;
+        }
+
         protected ResultBean(Parcel in) {
             id = in.readInt();
             name = in.readString();

@@ -49,5 +49,9 @@ public class ApiConstant {
     public static final String ADRESS_LIST = "seller/user/addresslist.html";
     //添加，编辑地址
     public static final String ADRESS_ADD_EDIT = "seller/user/editAddress";
+    //删除地址
+    public static final String ADRESS_DELETE = "seller/user/deleteaddress";
+    //留言
+    public static final String SUBMIT_MSG = "seller/user/message.html";
 
 }

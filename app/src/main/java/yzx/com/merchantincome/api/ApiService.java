@@ -11,6 +11,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Field;
 import rx.Observable;
+import yzx.com.merchantincome.entity.AdressListResponse;
 import yzx.com.merchantincome.entity.BannerResponse;
 import yzx.com.merchantincome.entity.CashRecordResponse;
 import yzx.com.merchantincome.entity.InComeRuleRespone;
@@ -149,7 +150,7 @@ public interface ApiService {
      */
     @POST(ApiConstant.ORDER)
     @FormUrlEncoded
-    Observable<OrderInfo> getOrderInfo(@Field("page") int page,@Field("status") int[] status);
+    Observable<OrderInfo> getOrderInfo(@Field("page") int page, @Field("status") int[] status);
 
     /**
      * 收益规则
@@ -173,7 +174,16 @@ public interface ApiService {
      * @return
      */
     @POST(ApiConstant.ADRESS_LIST)
-    Observable<ResultResponse> adressList();
+    Observable<AdressListResponse> adressList();
+
+    /**
+     * 留言
+     *
+     * @return
+     */
+    @POST(ApiConstant.SUBMIT_MSG)
+    @FormUrlEncoded
+    Observable<ResultResponse> submitMsg(@Field("message") String message);
 
     /**
      * 添加，编辑地址
@@ -185,5 +195,14 @@ public interface ApiService {
     Observable<ResultResponse> saveAdress(@Field("consignee") String consignee, @Field("mobile") String mobile, @Field("province") String province,
                                           @Field("city") String city, @Field("district") String district, @Field("address") String address, @Field("address") String town,
                                           @Field("is_default") String is_default, @Field("address_id") String address_id);
+
+    /**
+     * 删除地址
+     *
+     * @return
+     */
+    @POST(ApiConstant.ADRESS_DELETE)
+    @FormUrlEncoded
+    Observable<ResultResponse> deleteAdress(@Field("address_id") int address_id);
 
 }

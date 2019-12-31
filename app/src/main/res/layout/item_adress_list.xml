@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:background="@color/white">
+
+
+    <CheckBox
+        android:id="@+id/ck_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:button="@drawable/selector_select"
+        android:clickable="false"
+        android:enabled="false"
+        android:textColor="@color/color_cccccc" />
+
+    <TextView
+        android:id="@+id/tv_edit"
+        style="@style/tvStyle02"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="编辑"
+        android:textColor="@color/colorPrimary" />
+
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/tvStyle02"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/ck_default" />
+
+    <TextView
+        android:id="@+id/tv_phone"
+        style="@style/tvStyle02"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/tv_name"
+        android:layout_weight="1"
+        android:maxLines="1" />
+
+    <TextView
+        android:id="@+id/tv_defaut"
+        style="@style/tvStyle02"
+        android:visibility="gone"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_toLeftOf="@+id/tv_edit"
+        android:background="@drawable/bg_red_storke"
+        android:paddingBottom="3dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="3dp"
+        android:text="默认地址"
+        android:textColor="@color/color_red"
+        android:textSize="10sp" />
+
+
+    <TextView
+        android:id="@+id/tv_adress"
+        style="@style/tvStyle02"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@+id/tv_edit"
+        android:layout_toRightOf="@+id/ck_default"
+        android:ellipsize="end"
+        android:lineSpacingExtra="3dp"
+        android:maxLines="2" />
+
+
+</RelativeLayout>

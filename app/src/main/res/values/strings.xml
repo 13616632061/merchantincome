@@ -94,5 +94,6 @@
     <string name="edit_adress">编辑地址</string>
     <string name="delete_adress">删除地址</string>
     <string name="save">保存</string>
+    <string name="handler_success">操作成功</string>
 
 </resources>

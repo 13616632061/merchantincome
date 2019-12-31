@@ -2,16 +2,21 @@ package yzx.com.merchantincome.ui.activity.adress.addAndEditAdress;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.apkfuns.logutils.LogUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.library.base.mvp.BaseActivity;
+import com.library.utils.DialogUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -24,6 +29,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import yzx.com.merchantincome.R;
 import yzx.com.merchantincome.constant.RouterMapping;
+import yzx.com.merchantincome.entity.AdressListResponse;
 import yzx.com.merchantincome.entity.ProvinceResponse;
 import yzx.com.merchantincome.ui.activity.adress.addAndEditAdress.contract.AddAndEditAdressContract;
 import yzx.com.merchantincome.ui.activity.adress.addAndEditAdress.presenter.AddAndEditAdressPresenter;
@@ -50,8 +56,8 @@ public class AddAndEditAdressActivity extends BaseActivity implements AddAndEdit
     @BindView(R.id.tv_default)
     Switch tvDefault;
 
-    @Autowired(name = "addressId")
-    String addressId;
+    @Autowired(name = "adress")
+    AdressListResponse.ResultBean.ListsBean adress;
 
     private AddAndEditAdressPresenter mPresenter;
 
@@ -65,25 +71,28 @@ public class AddAndEditAdressActivity extends BaseActivity implements AddAndEdit
     protected void initView() {
         ARouter.getInstance().inject(this);
         EventBus.getDefault().register(this);
-        if (TextUtils.isEmpty(addressId)) {
+        mPresenter = new AddAndEditAdressPresenter(this);
+        if (adress == null) {
             //添加地址
             initTitle(getResources().getString(R.string.add_adress), true, getResources().getString(R.string.save));
         } else {
             //编辑地址
             initTitle(getResources().getString(R.string.edit_adress), true, getResources().getString(R.string.save));
             tvDetele.setVisibility(View.VISIBLE);
+            mPresenter.initAdress(adress);
         }
 
-        mPresenter = new AddAndEditAdressPresenter(this);
     }
 
-    @OnClick({R.id.tv_right,R.id.tv_detele,R.id.tv_area})
+    @OnClick({R.id.tv_right, R.id.tv_detele, R.id.tv_area})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_right://保存地址
-                mPresenter.saveAdress(addressId);
+                String adressID = adress != null ? adress.getAddress_id() + "" : "";
+                mPresenter.saveAdress(adressID);
                 break;
-            case R.id.tv_detele:
+            case R.id.tv_detele://删除地址
+                mPresenter.showDeleteDialog(adress.getAddress_id());
                 break;
             case R.id.tv_area://所在地区
                 mPresenter.toGoProvncePage();
@@ -161,15 +170,17 @@ public class AddAndEditAdressActivity extends BaseActivity implements AddAndEdit
      * @return
      */
     @Override
-    public boolean isDefault() {
-        final boolean[] isDefault = new boolean[1];
+    public void isDefault() {
         tvDefault.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                isDefault[0] = isChecked;
+                if (isChecked) {
+                    mPresenter.setDefaultAdress(1);
+                } else {
+                    mPresenter.setDefaultAdress(0);
+                }
             }
         });
-        return isDefault[0];
     }
 
     /**
@@ -178,6 +189,52 @@ public class AddAndEditAdressActivity extends BaseActivity implements AddAndEdit
     @Override
     public void toGoProvncePage() {
         routerNavigation(RouterMapping.ROUTER_ACTIVITY_PROVINCE);
+    }
+
+    /**
+     * 删除地址
+     *
+     * @param addressID
+     */
+    @Override
+    public void deleteAdress(int addressID) {
+        DialogUtils.getInstance().showDialog(this, "确定删除地址?", true, new DialogUtils.DialogCallBackTwo() {
+            @Override
+            public void exectEvent() {
+                mPresenter.deleteAdress(addressID);
+            }
+
+            @Override
+            public void exectCancel() {
+
+            }
+        });
+    }
+
+    /**
+     * 显示提示信息
+     *
+     * @param type
+     */
+    @Override
+    public void showMsg(int type) {
+        switch (type) {
+            case 1://操作成功
+                ToastUtils.showShort(getResources().getString(R.string.handler_success));
+                break;
+            case 2://姓名为空
+                ToastUtils.showShort(getResources().getString(R.string.empty_name));
+                break;
+            case 3://手机号为空
+                ToastUtils.showShort(getResources().getString(R.string.empty_phone));
+                break;
+            case 4://所在地区为空
+                ToastUtils.showShort(getResources().getString(R.string.empty_area));
+                break;
+            case 5://详细地址为空
+                ToastUtils.showShort(getResources().getString(R.string.empty_detail_adress));
+                break;
+        }
     }
 
 

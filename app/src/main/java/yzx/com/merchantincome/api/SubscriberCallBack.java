@@ -19,7 +19,7 @@ public abstract class SubscriberCallBack<T> extends Subscriber<ResultResponse<T>
 
     @Override
     public void onNext(ResultResponse<T> response) {
-        LogUtils.e("----------Response:" + response);
+//        LogUtils.e("----------Response:" + response);
         boolean isSuccess = (response != null && response.status == 1);
         LogUtils.e("----------Response:  isSuccess:  " + isSuccess);
         switch (response.status) {
