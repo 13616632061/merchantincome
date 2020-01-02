@@ -92,6 +92,12 @@ public class AdressListActivity extends BaseActivity implements AdressListContra
                 }
             }
         });
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+
+            }
+        });
         return adapter;
     }
 

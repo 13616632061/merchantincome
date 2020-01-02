@@ -88,8 +88,7 @@ public class AddAndEditAdressActivity extends BaseActivity implements AddAndEdit
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_right://保存地址
-                String adressID = adress != null ? adress.getAddress_id() + "" : "";
-                mPresenter.saveAdress(adressID);
+                mPresenter.saveAdress(adress);
                 break;
             case R.id.tv_detele://删除地址
                 mPresenter.showDeleteDialog(adress.getAddress_id());

@@ -59,7 +59,7 @@ public interface AddAndEditAdressContract {
         void initAdress(AdressListResponse.ResultBean.ListsBean adress);
 
         //保存地址
-        void saveAdress(String addressId);
+        void saveAdress(AdressListResponse.ResultBean.ListsBean adress);
 
         //去省份页面
         void toGoProvncePage();

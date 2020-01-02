@@ -61,11 +61,15 @@ public class AddAndEditAdressPresenter extends BasePresenter<AddAndEditAdressAct
      * 保存地址
      */
     @Override
-    public void saveAdress(String addressId) {
+    public void saveAdress(AdressListResponse.ResultBean.ListsBean adressBean) {
         String name = mView.getName();
         String phone = mView.getPhone();
         String area = mView.getArea();
         String adress = mView.getAdress();
+        String adressId = "";
+        if (adressBean != null) {
+            adressId = adressBean.getAddress_id() + "";
+        }
         if (TextUtils.isEmpty(name)) {
             mView.showMsg(2);
             return;
@@ -82,7 +86,7 @@ public class AddAndEditAdressPresenter extends BasePresenter<AddAndEditAdressAct
             mView.showMsg(5);
             return;
         }
-        Observable params = mModel.saveAdress(name, phone, mProvince.getId() + "", mCity.getId() + "", mCounty.getId() + "", mTown.getId() + "", adress, isDefault + "", addressId);
+        Observable params = mModel.saveAdress(name, phone, mProvince.getId() + "", mCity.getId() + "", mCounty.getId() + "", mTown.getId() + "", adress, isDefault + "", adressId);
         addSubscription(params, new SubscriberCallBack<ResultResponse>() {
             @Override
             protected void onSuccess(ResultResponse response) {

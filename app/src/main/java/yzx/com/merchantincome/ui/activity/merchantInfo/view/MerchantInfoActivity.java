@@ -62,7 +62,7 @@ public class MerchantInfoActivity extends BaseActivity implements IMerchantInfoV
     @Override
     protected void initView() {
         EventBus.getDefault().register(this);
-        initTitle(getResources().getString(R.string.shopper_info), false, "");
+        initTitle(getResources().getString(R.string.shopper_info), true, getResources().getString(R.string.introducer));
         mPresenter = new MerchantInfoPresenter(this);
         mPresenter.initData();
 
@@ -76,6 +76,8 @@ public class MerchantInfoActivity extends BaseActivity implements IMerchantInfoV
                 break;
             case R.id.btn_sure://确定
                 mPresenter.editInfo();
+                break;
+            case R.id.tv_right:
                 break;
         }
     }
@@ -235,14 +237,14 @@ public class MerchantInfoActivity extends BaseActivity implements IMerchantInfoV
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void eventBus(Map<String, Object> map) {
-        if (map.containsKey("area")) {//所在地区信息
-            Bundle bundle = (Bundle) map.get("area");
-            ProvinceResponse.ResultBean province = (ProvinceResponse.ResultBean) bundle.get("province");
-            ProvinceResponse.ResultBean city = (ProvinceResponse.ResultBean) bundle.get("city");
-            ProvinceResponse.ResultBean county = (ProvinceResponse.ResultBean) bundle.get("county");
-            ProvinceResponse.ResultBean town = (ProvinceResponse.ResultBean) bundle.get("town");
-            mPresenter.setArea(province, city, county, town);
-        }
+//        if (map.containsKey("area")) {//所在地区信息
+//            Bundle bundle = (Bundle) map.get("area");
+//            ProvinceResponse.ResultBean province = (ProvinceResponse.ResultBean) bundle.get("province");
+//            ProvinceResponse.ResultBean city = (ProvinceResponse.ResultBean) bundle.get("city");
+//            ProvinceResponse.ResultBean county = (ProvinceResponse.ResultBean) bundle.get("county");
+//            ProvinceResponse.ResultBean town = (ProvinceResponse.ResultBean) bundle.get("town");
+//            mPresenter.setArea(province, city, county, town);
+//        }
     }
 
     @Override

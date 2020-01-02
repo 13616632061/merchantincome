@@ -1,5 +1,7 @@
 package yzx.com.merchantincome.entity;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2019/12/12.
  */
@@ -8,7 +10,7 @@ public class UserInfo extends ResultResponse {
 
 
     /**
-     * result : {"id":4,"name":"张三","mobile":"13616632061","bank":"","account":"","vx":"","alipay":"","pass":"ab4c822bd33e0cf983d3a735be9d8432","re_mobile":"13129519607","address_id":858,"is_receive_goods":0,"wle_income":"0.00","retail_income":"0.00","token":"3697bcbe981d58c6ae028b3e983f0b83","createtime":0,"last_login_time":1576464533,"refresh_token":"b1f2da0921085b2d9bb2e3fd86e759e7"}
+     * result : {"id":4,"name":"张三","mobile":"13616632061","bank":"","account":"","vx":"1361663211","alipay":"","re_mobile":"13129519607","wle_income":"9687.00","retail_income":"97000.00","token":"b8efd36dbc99501f88ece48d2b80e7fb","createtime":0,"last_login_time":1577956284,"refresh_token":"09fe701c2c98aa573ca8a46812022066","score":0,"list":[{"name":"15820477025","mobile":"15820477025"}]}
      */
 
     private ResultBean result;
@@ -28,18 +30,17 @@ public class UserInfo extends ResultResponse {
          * mobile : 13616632061
          * bank :
          * account :
-         * vx :
+         * vx : 1361663211
          * alipay :
-         * pass : ab4c822bd33e0cf983d3a735be9d8432
          * re_mobile : 13129519607
-         * address_id : 858
-         * is_receive_goods : 0
-         * wle_income : 0.00
-         * retail_income : 0.00
-         * token : 3697bcbe981d58c6ae028b3e983f0b83
+         * wle_income : 9687.00
+         * retail_income : 97000.00
+         * token : b8efd36dbc99501f88ece48d2b80e7fb
          * createtime : 0
-         * last_login_time : 1576464533
-         * refresh_token : b1f2da0921085b2d9bb2e3fd86e759e7
+         * last_login_time : 1577956284
+         * refresh_token : 09fe701c2c98aa573ca8a46812022066
+         * score : 0
+         * list : [{"name":"15820477025","mobile":"15820477025"}]
          */
 
         private int id;
@@ -49,10 +50,7 @@ public class UserInfo extends ResultResponse {
         private String account;
         private String vx;
         private String alipay;
-        private String pass;
         private String re_mobile;
-        private int address_id;
-        private int is_receive_goods;
         private String wle_income;
         private String retail_income;
         private String token;
@@ -60,14 +58,7 @@ public class UserInfo extends ResultResponse {
         private int last_login_time;
         private String refresh_token;
         private int score;
-
-        public int getScore() {
-            return score;
-        }
-
-        public void setScore(int score) {
-            this.score = score;
-        }
+        private List<ListBean> list;
 
         public int getId() {
             return id;
@@ -125,36 +116,12 @@ public class UserInfo extends ResultResponse {
             this.alipay = alipay;
         }
 
-        public String getPass() {
-            return pass;
-        }
-
-        public void setPass(String pass) {
-            this.pass = pass;
-        }
-
         public String getRe_mobile() {
             return re_mobile;
         }
 
         public void setRe_mobile(String re_mobile) {
             this.re_mobile = re_mobile;
-        }
-
-        public int getAddress_id() {
-            return address_id;
-        }
-
-        public void setAddress_id(int address_id) {
-            this.address_id = address_id;
-        }
-
-        public int getIs_receive_goods() {
-            return is_receive_goods;
-        }
-
-        public void setIs_receive_goods(int is_receive_goods) {
-            this.is_receive_goods = is_receive_goods;
         }
 
         public String getWle_income() {
@@ -203,6 +170,48 @@ public class UserInfo extends ResultResponse {
 
         public void setRefresh_token(String refresh_token) {
             this.refresh_token = refresh_token;
+        }
+
+        public int getScore() {
+            return score;
+        }
+
+        public void setScore(int score) {
+            this.score = score;
+        }
+
+        public List<ListBean> getList() {
+            return list;
+        }
+
+        public void setList(List<ListBean> list) {
+            this.list = list;
+        }
+
+        public static class ListBean {
+            /**
+             * name : 15820477025
+             * mobile : 15820477025
+             */
+
+            private String name;
+            private String mobile;
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public String getMobile() {
+                return mobile;
+            }
+
+            public void setMobile(String mobile) {
+                this.mobile = mobile;
+            }
         }
     }
 }
