@@ -19,6 +19,7 @@ import com.bigkoo.convenientbanner.holder.Holder;
 import com.bigkoo.convenientbanner.utils.ScreenUtil;
 import com.blankj.utilcode.util.ToastUtils;
 import com.library.base.mvp.BaseActivity;
+import com.library.utils.DialogUtils;
 
 import java.util.ArrayList;
 
@@ -237,7 +238,7 @@ public class MainActivity extends BaseActivity implements IMainViewImp, SwipeRef
      */
     @Override
     public void setScore(int score) {
-        tvScore.setText(score+"");
+        tvScore.setText(score + "");
     }
 
     /**
@@ -354,10 +355,24 @@ public class MainActivity extends BaseActivity implements IMainViewImp, SwipeRef
         mPresenter.getUserInfo();
     }
 
+    /**
+     * 完善账号信息
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    public void showGoEditCountInfo() {
+        DialogUtils.getInstance().
+
+                showDialog(this, "账号信息为空，请完善信息后，再进行提现操作！", true, new DialogUtils.DialogCallBackTwo() {
+                    @Override
+                    public void exectEvent() {
+                        mPresenter.toGoMerchantInfo();
+                    }
+
+                    @Override
+                    public void exectCancel() {
+
+                    }
+                });
     }
+
 }

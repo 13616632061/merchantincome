@@ -19,4 +19,6 @@ public interface IMerchantInfoPresenterImp {
 
     //修改商户信息
     void editInfo();
+    //调转介绍人页面
+    void toGoIntroducerPage();
 }

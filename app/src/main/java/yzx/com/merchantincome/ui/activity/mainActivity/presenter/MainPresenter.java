@@ -126,6 +126,14 @@ public class MainPresenter extends BasePresenter<MainActivity> implements IPrese
             mView.showMsg(2);
             return;
         }
+        UserInfo userInfo = LoginUserUtil.getInstance().getLoginUser();
+        if (userInfo != null) {
+          if (TextUtils.isEmpty(userInfo.getResult().getBank())&&TextUtils.isEmpty(userInfo.getResult().getVx())
+                  &&TextUtils.isEmpty(userInfo.getResult().getAlipay())){
+              mView.showGoEditCountInfo();
+              return;
+          }
+        }
 //        if (TextUtils.isEmpty(mView.getPwd())) {
 //            mView.showMsg(3);
 //            return;
@@ -173,6 +181,8 @@ public class MainPresenter extends BasePresenter<MainActivity> implements IPrese
         mView.toGoServerCenter();
     }
 
+
+
     /**
      * 退出登录
      */
@@ -182,4 +192,5 @@ public class MainPresenter extends BasePresenter<MainActivity> implements IPrese
         LoginUserUtil.getInstance().setLoginUser(null);
         mView.outLogin();
     }
+
 }

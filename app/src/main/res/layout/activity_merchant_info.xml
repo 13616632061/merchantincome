@@ -45,10 +45,12 @@
                     android:inputType="number" />
 
                 <include
+                    android:visibility="gone"
                     style="@style/lineStyle01"
                     layout="@layout/layout_line"></include>
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tv_area"
                     style="@style/inputStyle02"
                     android:drawableLeft="@mipmap/icon_area"

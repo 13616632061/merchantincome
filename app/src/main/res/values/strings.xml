@@ -96,5 +96,6 @@
     <string name="save">保存</string>
     <string name="handler_success">操作成功</string>
     <string name="introducer">介绍人</string>
+    <string name="recommender">邀请人</string>
 
 </resources>

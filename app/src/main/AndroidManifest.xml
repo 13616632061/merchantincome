@@ -77,7 +77,8 @@
         <activity android:name=".ui.activity.cashSuccess.CashSuccessActivity" />
         <activity android:name=".ui.activity.serviceCentre.view.ServiceCentreActivity" />
         <activity android:name=".ui.activity.adress.adressList.AdressListActivity" />
-        <activity android:name=".ui.activity.adress.addAndEditAdress.AddAndEditAdressActivity"></activity>
+        <activity android:name=".ui.activity.adress.addAndEditAdress.AddAndEditAdressActivity" />
+        <activity android:name=".ui.activity.introducer.view.IntroducerActivity"></activity>
     </application>
 
 </manifest>

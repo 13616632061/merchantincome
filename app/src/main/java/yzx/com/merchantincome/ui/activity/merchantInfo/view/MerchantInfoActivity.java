@@ -1,12 +1,11 @@
 package yzx.com.merchantincome.ui.activity.merchantInfo.view;
 
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ToastUtils;
 import com.library.base.mvp.BaseActivity;
 
@@ -17,11 +16,9 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import yzx.com.merchantincome.R;
 import yzx.com.merchantincome.constant.RouterMapping;
-import yzx.com.merchantincome.entity.ProvinceResponse;
 import yzx.com.merchantincome.ui.activity.merchantInfo.presenter.MerchantInfoPresenter;
 
 /**
@@ -68,7 +65,7 @@ public class MerchantInfoActivity extends BaseActivity implements IMerchantInfoV
 
     }
 
-    @OnClick({R.id.tv_area, R.id.btn_sure})
+    @OnClick({R.id.tv_area, R.id.btn_sure,R.id.tv_right})
     public void setOnClick(View view) {
         switch (view.getId()) {
             case R.id.tv_area://选择地址
@@ -78,6 +75,7 @@ public class MerchantInfoActivity extends BaseActivity implements IMerchantInfoV
                 mPresenter.editInfo();
                 break;
             case R.id.tv_right:
+                mPresenter.toGoIntroducerPage();
                 break;
         }
     }
@@ -215,7 +213,15 @@ public class MerchantInfoActivity extends BaseActivity implements IMerchantInfoV
      */
     @Override
     public void setInvitationPhone(String phone) {
-        invitationPhone.setText(phone);
+        invitationPhone.setText(phone + "(" + getResources().getString(R.string.recommender) + ")");
+    }
+
+    /**
+     * 调转介绍人页面
+     */
+    @Override
+    public void toGoIntroducerPage() {
+        routerNavigation(RouterMapping.ROUTER_ACTIVITY_INTRODUCER);
     }
 
     /**

@@ -50,6 +50,11 @@ public interface IMerchantInfoViewImp {
     //邀请人手机
     void setInvitationPhone(String invitationPhone);
 
+    //调整介绍人页面
+    void toGoIntroducerPage();
+
     //显示提示信息
     void showToastMsg(int type);
+
+
 }

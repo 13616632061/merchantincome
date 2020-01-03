@@ -65,4 +65,7 @@ public interface IMainViewImp {
 
     //设置刷新状态
     void setRefreshing(boolean refreshing);
+
+    //完善账号信息
+    void showGoEditCountInfo();
 }

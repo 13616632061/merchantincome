@@ -104,4 +104,12 @@ public class MerchantInfoPresenter extends BasePresenter<MerchantInfoActivity> i
 
         });
     }
+
+    /**
+     * 调转介绍人页面
+     */
+    @Override
+    public void toGoIntroducerPage() {
+        mView.toGoIntroducerPage();
+    }
 }
