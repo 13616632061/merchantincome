@@ -68,7 +68,6 @@ public class IntroducerActivity extends BaseActivity implements IntroducerContra
         EmptyDataLayout empty_data_layout = (EmptyDataLayout) empty_view.findViewById(R.id.empty_data_layout);
         empty_data_layout.setEmpty_imageSrc(R.drawable.no_data_search);
         empty_data_layout.setEmpty_btnText("");
-
         return empty_view;
     }
 }
