@@ -12,136 +12,16 @@
         android:id="@+id/title_bar"
         layout="@layout/layout_title_bar"></include>
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:gravity="center"
-        android:text="轮播图" />
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
-    <TextView
-        android:id="@+id/tv_rule"
-        android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_rule"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+    </ScrollView>
 
-    <!--<TextView-->
-    <!--android:paddingLeft="15dp"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="48dp"-->
-    <!--android:background="@color/white"-->
-    <!--android:gravity="center_vertical"-->
-    <!--android:text="1.购买收益规则"-->
-    <!--android:textColor="@color/colorPrimary"-->
-    <!--android:textSize="16sp"-->
-    <!--android:textStyle="bold" />-->
-
-    <!--<RelativeLayout-->
-    <!--android:paddingLeft="15dp"-->
-    <!--android:paddingRight="15dp"-->
-    <!--android:background="@color/white"-->
-    <!--android:layout_marginTop="1dp"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="48dp">-->
-
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_centerVertical="true"-->
-    <!--android:text="直接介绍客户购买："-->
-    <!--android:textColor="@color/blackText"-->
-    <!--android:textSize="14sp" />-->
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_centerVertical="true"-->
-    <!--android:text="奖金：150元/台"-->
-    <!--android:layout_alignParentRight="true"-->
-    <!--android:textColor="@color/color_FF8a04"-->
-    <!--android:textSize="14sp" />-->
-    <!--</RelativeLayout>-->
-    <!--<RelativeLayout-->
-    <!--android:paddingLeft="15dp"-->
-    <!--android:paddingRight="15dp"-->
-    <!--android:background="@color/white"-->
-    <!--android:layout_marginTop="1dp"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="48dp">-->
-
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_centerVertical="true"-->
-    <!--android:text="你直接介绍的客户再介绍客户购买："-->
-    <!--android:textColor="@color/blackText"-->
-    <!--android:textSize="14sp" />-->
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_centerVertical="true"-->
-    <!--android:text="奖金：50元/台"-->
-    <!--android:layout_alignParentRight="true"-->
-    <!--android:textColor="@color/color_FF8a04"-->
-    <!--android:textSize="14sp" />-->
-    <!--</RelativeLayout>-->
-
-    <!--<TextView-->
-    <!--android:layout_marginTop="15dp"-->
-    <!--android:paddingLeft="15dp"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="48dp"-->
-    <!--android:background="@color/white"-->
-    <!--android:gravity="center_vertical"-->
-    <!--android:text="2.租用收益规则"-->
-    <!--android:textColor="@color/colorPrimary"-->
-    <!--android:textSize="16sp"-->
-    <!--android:textStyle="bold" />-->
-
-    <!--<RelativeLayout-->
-    <!--android:paddingLeft="15dp"-->
-    <!--android:paddingRight="15dp"-->
-    <!--android:background="@color/white"-->
-    <!--android:layout_marginTop="1dp"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="48dp">-->
-
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_centerVertical="true"-->
-    <!--android:text="直接介绍客户租用："-->
-    <!--android:textColor="@color/blackText"-->
-    <!--android:textSize="14sp" />-->
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_centerVertical="true"-->
-    <!--android:text="奖金：200元/台"-->
-    <!--android:layout_alignParentRight="true"-->
-    <!--android:textColor="@color/color_FF8a04"-->
-    <!--android:textSize="14sp" />-->
-    <!--</RelativeLayout>-->
-    <!--<RelativeLayout-->
-    <!--android:paddingLeft="15dp"-->
-    <!--android:paddingRight="15dp"-->
-    <!--android:background="@color/white"-->
-    <!--android:layout_marginTop="1dp"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="48dp">-->
-
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_centerVertical="true"-->
-    <!--android:text="你直接介绍的客户再介绍客户租用："-->
-    <!--android:textColor="@color/blackText"-->
-    <!--android:textSize="14sp" />-->
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_centerVertical="true"-->
-    <!--android:text="奖金：100元/台"-->
-    <!--android:layout_alignParentRight="true"-->
-    <!--android:textColor="@color/color_FF8a04"-->
-    <!--android:textSize="14sp" />-->
-    <!--</RelativeLayout>-->
 </LinearLayout>

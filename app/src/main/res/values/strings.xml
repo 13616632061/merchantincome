@@ -97,5 +97,6 @@
     <string name="handler_success">操作成功</string>
     <string name="introducer">介绍人</string>
     <string name="recommender">邀请人</string>
+    <string name="no_order_data">暂无订单数据</string>
 
 </resources>

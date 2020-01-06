@@ -1,22 +1,17 @@
 package yzx.com.merchantincome.api;
 
-import android.graphics.Bitmap;
 import android.text.TextUtils;
 
 import com.apkfuns.logutils.LogUtils;
 import com.blankj.utilcode.util.NetworkUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 import com.library.app.LibAplication;
 import com.library.utils.AESUtils;
-import com.library.utils.SPUtils;
 import com.library.utils.TimeUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -25,15 +20,12 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-import yzx.com.merchantincome.R;
 import yzx.com.merchantincome.entity.RefreshTokenRespone;
 import yzx.com.merchantincome.entity.ResultResponse;
 import yzx.com.merchantincome.entity.UserInfo;
@@ -104,15 +96,16 @@ public class ApiRetrofit {
         }
         LogUtils.e("| Token是否过期:" + overDueToken(content));
         if (overDueToken(content)) {
-            String newToken = getNewToken();
-            LogUtils.e("| newToken: " + newToken);
-            Request newRequest = chain.request().newBuilder()
-                    .addHeader("sign", getSign())
-                    .addHeader("token", newToken)
-                    .addHeader("noncestr", noncestr)
-                    .addHeader("timestamp", TimeUtils.getTime10() + "")
-                    .build();
-            return chain.proceed(newRequest);
+//            String newToken = getNewToken(chain);
+//            LogUtils.e("| newToken: " + newToken);
+//            Request newRequest = chain.request().newBuilder()
+//                    .addHeader("sign", getSign())
+//                    .addHeader("token", newToken)
+//                    .addHeader("noncestr", noncestr)
+//                    .addHeader("timestamp", TimeUtils.getTime10() + "")
+//                    .build();
+//            return chain.proceed(newRequest);
+            return getNewToken(chain);
         } else {
             return response.newBuilder()
                     .body(okhttp3.ResponseBody.create(mediaType, content))
@@ -204,11 +197,12 @@ public class ApiRetrofit {
      *
      * @return
      */
-    public String getNewToken() {
+    public Response getNewToken(Interceptor.Chain chain) throws IOException {
         final String[] newToken = {null};
+        final Request[] newRequest = {null};
         UserInfo userInfo = LoginUserUtil.getInstance().getLoginUser();
         if (userInfo == null) {
-            return newToken[0];
+            return null;
         }
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiConstant.BASE_SERVER_URL)
@@ -237,6 +231,12 @@ public class ApiRetrofit {
                                 userInfo.getResult().setToken(newToken[0]);
                                 LoginUserUtil.getInstance().setLoginUser(userInfo);
                             }
+                          newRequest[0] = chain.request().newBuilder()
+                                    .addHeader("sign", getSign())
+                                    .addHeader("token", String.valueOf(newToken))
+                                    .addHeader("noncestr", noncestr)
+                                    .addHeader("timestamp", TimeUtils.getTime10() + "")
+                                    .build();
                         }
                     });
 
@@ -245,7 +245,7 @@ public class ApiRetrofit {
             e.printStackTrace();
             LogUtils.e("| newToken_error:" + e.toString());
         }
-        return newToken[0];
+        return chain.proceed(newRequest[0]);
     }
 
     /**

@@ -14,5 +14,7 @@
     <color name="whilte">#ffffff</color>
 
     <color name="color_e8e8e8">#e8e8e8</color>
+    <color name="background_color">#f5f4f4</color>
+
 
 </resources>

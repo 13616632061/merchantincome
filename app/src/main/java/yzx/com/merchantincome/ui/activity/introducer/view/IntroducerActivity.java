@@ -3,11 +3,13 @@ package yzx.com.merchantincome.ui.activity.introducer.view;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bigkoo.convenientbanner.utils.ScreenUtil;
 import com.library.base.mvp.BaseActivity;
 import com.library.weight.DividerDecoration;
+import com.library.weight.EmptyDataLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,5 +60,15 @@ public class IntroducerActivity extends BaseActivity implements IntroducerContra
         list.setLayoutManager(new LinearLayoutManager(this));
         list.addItemDecoration(new DividerDecoration(this, LinearLayoutManager.VERTICAL, getResources().getColor(R.color.color_cccccc), ScreenUtil.dip2px(this, 5), 0, 0));
         return adapter;
+    }
+
+    @Override
+    public View setEmptyView() {
+        View empty_view = View.inflate(this, R.layout.empty_data_layout, null);
+        EmptyDataLayout empty_data_layout = (EmptyDataLayout) empty_view.findViewById(R.id.empty_data_layout);
+        empty_data_layout.setEmpty_imageSrc(R.drawable.no_data_search);
+        empty_data_layout.setEmpty_btnText("");
+
+        return empty_view;
     }
 }

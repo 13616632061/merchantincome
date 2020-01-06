@@ -79,6 +79,7 @@ public class OrderListPresenter extends BasePresenter<OrderListFragment> impleme
                 status = new int[]{2, 3};
                 break;
         }
+        mAdapter.isUseEmpty(false);
         addSubscription(mModel.getOrderInfo(mPage, status), new SubscriberCallBack<OrderInfo>() {
             @Override
             protected void onSuccess(OrderInfo response) {
@@ -87,12 +88,15 @@ public class OrderListPresenter extends BasePresenter<OrderListFragment> impleme
                 }
                 mView.setRefreshing(false);
                 mData.addAll(response.getResult().getData());
-                mAdapter.notifyDataSetChanged();
                 if (mPage < mView.getPageRowNumber(response.getResult().getTotal())) {
                     mAdapter.loadMoreComplete();
                 } else {
                     mAdapter.loadMoreEnd();
                 }
+                if (mData.size() <= 0) {
+                    mAdapter.setEmptyView(mView.setEmptyView());
+                }
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override

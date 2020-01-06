@@ -8,8 +8,8 @@ public class ApiConstant {
     /**
      * 接口根地址(域名)
      */
-//    public static final String BASE_SERVER_URL = "http://swoole.czxshop.com/";//（正式）
-    public static final String BASE_SERVER_URL = "http://bbs.czxshop.com/";//(测试)
+    public static final String BASE_SERVER_URL = "http://swoole.czxshop.com/";//（正式）
+//    public static final String BASE_SERVER_URL = "http://bbs.czxshop.com/";//(测试)
 
     /**
      * 接口api

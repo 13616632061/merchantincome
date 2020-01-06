@@ -1,5 +1,7 @@
 package yzx.com.merchantincome.ui.fragment.orderList.contract;
 
+import android.view.View;
+
 import rx.Observable;
 import yzx.com.merchantincome.ui.adapter.OrderListAdapter;
 
@@ -11,7 +13,7 @@ public interface OrderListContract {
     interface Model {
 
         //获取订单信息
-        Observable getOrderInfo(int page,int[] status);
+        Observable getOrderInfo(int page, int[] status);
     }
 
     interface View {
@@ -21,6 +23,9 @@ public interface OrderListContract {
 
         //设置刷新状态
         void setRefreshing(boolean refreshing);
+
+        //设置空视图
+        android.view.View setEmptyView();
     }
 
     interface Presenter {

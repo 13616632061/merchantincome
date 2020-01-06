@@ -4,18 +4,15 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.bigkoo.convenientbanner.utils.ScreenUtil;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.library.base.mvp.BaseFragment;
 import com.library.weight.DividerDecoration;
+import com.library.weight.EmptyDataLayout;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import yzx.com.merchantincome.R;
 import yzx.com.merchantincome.ui.adapter.OrderListAdapter;
 import yzx.com.merchantincome.ui.fragment.orderList.contract.OrderListContract;
@@ -66,6 +63,21 @@ public class OrderListFragment extends BaseFragment implements OrderListContract
     @Override
     public void setRefreshing(boolean refreshing) {
         refresh.setRefreshing(refreshing);
+    }
+
+    /**
+     * 设置空视图
+     * @return
+     */
+    @Override
+    public View setEmptyView() {
+        View empty_view = View.inflate(getActivity(), R.layout.empty_data_layout, null);
+        EmptyDataLayout empty_data_layout = (EmptyDataLayout) empty_view.findViewById(R.id.empty_data_layout);
+        empty_data_layout.setEmpty_imageSrc(R.drawable.no_data_search);
+        empty_data_layout.setEmpty_btnText("");
+        empty_data_layout.setEmpty_tvText(getResources().getString(R.string.no_order_data));
+
+        return empty_view;
     }
 
     /**

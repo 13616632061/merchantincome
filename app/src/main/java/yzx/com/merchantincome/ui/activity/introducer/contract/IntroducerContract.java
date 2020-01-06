@@ -13,6 +13,9 @@ public interface IntroducerContract {
     interface View {
         //初始化适配器
         IntroducerAdapter initAdapter();
+
+        //设置空视图
+        android.view.View setEmptyView();
     }
 
     interface Presenter {
