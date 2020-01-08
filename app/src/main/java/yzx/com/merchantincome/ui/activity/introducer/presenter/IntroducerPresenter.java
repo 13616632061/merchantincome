@@ -46,6 +46,9 @@ public class IntroducerPresenter extends BasePresenter<IntroducerActivity> imple
         UserInfo userInfo = LoginUserUtil.getInstance().getLoginUser();
         if (userInfo != null) {
             data.addAll(userInfo.getResult().getList());
+            if (data.size() <= 0) {
+                mAdapter.setEmptyView(mView.setEmptyView());
+            }
             mAdapter.notifyDataSetChanged();
         }
     }

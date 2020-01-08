@@ -21,7 +21,6 @@ public abstract class SubscriberCallBack<T> extends Subscriber<ResultResponse<T>
     public void onNext(ResultResponse<T> response) {
 //        LogUtils.e("----------Response:" + response);
         boolean isSuccess = (response != null && response.status == 1);
-        LogUtils.e("----------Response:  isSuccess:  " + isSuccess);
         switch (response.status) {
             case 1://请求成功
                 onSuccess((T) response);

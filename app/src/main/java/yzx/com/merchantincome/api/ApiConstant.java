@@ -53,5 +53,7 @@ public class ApiConstant {
     public static final String ADRESS_DELETE = "seller/user/deleteaddress";
     //留言
     public static final String SUBMIT_MSG = "seller/user/message.html";
+    //手机应用说明
+    public static final String SUBMIT_APPLICATION_NOTES = "seller/goods/goodsinfo.html";
 
 }

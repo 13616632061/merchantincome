@@ -12,6 +12,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Field;
 import rx.Observable;
 import yzx.com.merchantincome.entity.AdressListResponse;
+import yzx.com.merchantincome.entity.ApplicationNotesRespone;
 import yzx.com.merchantincome.entity.BannerResponse;
 import yzx.com.merchantincome.entity.CashRecordResponse;
 import yzx.com.merchantincome.entity.InComeRuleRespone;
@@ -93,7 +94,7 @@ public interface ApiService {
      */
     @POST(ApiConstant.REFRESH_TOKEN)
     @FormUrlEncoded
-    Observable<RefreshTokenRespone> refreshToken(@Field("token") String token, @Field("refresh_token") String refresh_token);
+    Call<RefreshTokenRespone> refreshToken(@Field("token") String token, @Field("refresh_token") String refresh_token);
 
     /**
      * 轮播广告
@@ -175,6 +176,14 @@ public interface ApiService {
      */
     @POST(ApiConstant.ADRESS_LIST)
     Observable<AdressListResponse> adressList();
+
+    /**
+     * 应用说明
+     *
+     * @return
+     */
+    @POST(ApiConstant.SUBMIT_APPLICATION_NOTES)
+    Observable<ApplicationNotesRespone> applicationNotes();
 
     /**
      * 留言

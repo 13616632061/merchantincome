@@ -24,6 +24,9 @@ public interface IMainViewImp {
     //服务中心
     void toGoServerCenter();
 
+    //应用说明
+    void toGoApplicationNotes();
+
     //提现成功
     void cashSuccess();
 

@@ -46,6 +46,8 @@ public class RouterMapping {
     public static final String ROUTER_ACTIVITY_ADRESS_ADD_EDIT = "/app/AddAndEditAdressActivity";
     //介绍人
     public static final String ROUTER_ACTIVITY_INTRODUCER = "/app/IntroducerActivity";
+    //应用说明
+    public static final String ROUTER_ACTIVITY_APPLICATION_NOTES = "/app/ApplicationNotesActivity";
 
     //toutiao 组建
     //new

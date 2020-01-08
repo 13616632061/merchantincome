@@ -99,6 +99,14 @@ public class MainPresenter extends BasePresenter<MainActivity> implements IPrese
     }
 
     /**
+     * 跳转应用说明
+     */
+    @Override
+    public void toGoApplicationNotes() {
+        mView.toGoApplicationNotes();
+    }
+
+    /**
      * 确定提现
      */
     @Override

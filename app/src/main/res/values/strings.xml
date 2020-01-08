@@ -98,5 +98,6 @@
     <string name="introducer">介绍人</string>
     <string name="recommender">邀请人</string>
     <string name="no_order_data">暂无订单数据</string>
+    <string name="app_notes">应用说明</string>
 
 </resources>

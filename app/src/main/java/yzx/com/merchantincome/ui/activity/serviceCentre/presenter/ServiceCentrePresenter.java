@@ -34,7 +34,7 @@ public class ServiceCentrePresenter extends BasePresenter<ServiceCentreActivity>
             @Override
             protected void onSuccess(InComeRuleRespone response) {
                 if (!TextUtils.isEmpty(response.getResult().getDetail())) {
-                    mView.setservice(response.getResult().getDetail());
+                    mView.setservice(response.getResult().getDetail().replace("服务中心",""));
                 }
             }
 

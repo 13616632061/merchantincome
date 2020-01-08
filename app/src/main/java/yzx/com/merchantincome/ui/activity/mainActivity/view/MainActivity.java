@@ -117,6 +117,7 @@ public class MainActivity extends BaseActivity implements IMainViewImp, SwipeRef
                 mPresenter.toGoMyOrder();
                 break;
             case R.id.tv_explain://手机应用说明
+                mPresenter.toGoApplicationNotes();
                 break;
             case R.id.tv_income_rule://收益规则
                 mPresenter.toGoInComeRule();
@@ -173,6 +174,14 @@ public class MainActivity extends BaseActivity implements IMainViewImp, SwipeRef
     public void toGoServerCenter() {
         routerNavigation(RouterMapping.ROUTER_ACTIVITY_SERVICE_CENTRE);
 
+    }
+
+    /**
+     * 应用说明
+     */
+    @Override
+    public void toGoApplicationNotes() {
+        routerNavigation(RouterMapping.ROUTER_ACTIVITY_APPLICATION_NOTES);
     }
 
     /**

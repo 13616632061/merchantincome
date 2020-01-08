@@ -19,6 +19,9 @@ public interface IPresenterImp {
     //跳转我的订单
     void toGoMyOrder();
 
+    //应用说明
+    void toGoApplicationNotes();
+
     //确定提现
     void sureCash();
 
